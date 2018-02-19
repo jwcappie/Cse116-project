@@ -3,8 +3,7 @@ package Model;
 import java.util.ArrayList;
 
 public class Board {
-	
-	//testtttt
+
 	private ArrayList<Location> Locations = new ArrayList <>();
 
 	public Board() {
