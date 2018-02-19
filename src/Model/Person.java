@@ -15,31 +15,31 @@ public class Person {
 	
 	//getters and setters
 	public boolean isRed() {
-		return Red;
+		return red;
 	}
 
 	public void setRed() {
-		Red = true;
+		red = true;
 	}
 
 	public boolean isBlue() {
-		return Blue;
+		return blue;
 	}
 
 	public void setBlue() {
-		Blue = true;
+		blue = true;
 	}
 
 	public boolean isAssassin() {
-		return Assassin;
+		return assassin;
 	}
 
 	public void setAssassin() {
-		Assassin = true;
+		assassin = true;
 	}
 
 	public boolean isInnocent() {
-		return Innocent;
+		return bystander;
 	}
 	
 	public void setRevealed() {
