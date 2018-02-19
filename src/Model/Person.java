@@ -3,10 +3,10 @@ package Model;
 public class Person {
 	
 	private String codename;
-	private boolean Red= false;
-	private boolean Blue = false;
-	private boolean Assassin = false;
-	private boolean Innocent = false;
+	private boolean red= false;
+	private boolean blue = false;
+	private boolean assassin = false;
+	private boolean bystander = true;
 	private boolean revealed = false;
 
 	public Person(String c) {
