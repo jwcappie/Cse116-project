@@ -1,0 +1,25 @@
+Meeting Minutes for February 23rd:
+
+Meeting Attendance:
+	1. Justin Cappiello
+	2. Aritra Paul
+	3. Abdullah Abbadi
+	4. Robert Straub [M]
+
+Tasks Completed Since Last Meeting:
+	1. Skeleton for jUnit tests are up as a guide to what the tests have to accomplish.
+	2. ReadCodeNameTest is complete and functional.
+
+Tasks Worked Upon but Not Completed:
+	1. jUnit testing
+		CodeLegality :
+		- Discussed hardcoding a codeword to be read to check against the entire list. Should return false if codeword is in list of locations.
+
+Goals for next meeting:
+	1. More jUnit tests completed
+	2. Fix errors within the current classes
+	3. When you complete a test, update the table(s) in the google doc to explain what the test/method does. 
+
+Scheduled next meeting(s):
+	1. Monday 4pm
+	2. 
