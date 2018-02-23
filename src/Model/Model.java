@@ -10,11 +10,14 @@ public class Model {
 
 	private ArrayList<String> names = new ArrayList<>();
 	private ArrayList<Person> personList;
+	private ArrayList<String> unShuffledCodenames = new ArrayList<>();   //Stores the arrayList from ReadFile as unshuffled. -Aritra
+//	private String text_File_For_CodeName = "";
 
-	public Model() {
+	public Model(String fileName) {
 
 		Board currentBoard = new Board();
-		CreateNameList();
+		ReadFile(fileName);
+		CreateNameList(fileName);
 		CreatePersonList();
 		currentBoard.setBoard(personList, names);
 
@@ -49,9 +52,9 @@ public class Model {
 	}
 
 	// Creates List of All names, shuffles the list, adds 25 to names
-	private void CreateNameList() {
+	private void CreateNameList(String name) {
 
-		ArrayList<String> fullList = ReadFile("GameWords.txt");
+		ArrayList<String> fullList = ReadFile(name);
 
 		Collections.shuffle(fullList);
 
@@ -75,7 +78,7 @@ public class Model {
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
-
+		unShuffledCodenames = lines;
 		return lines;
 
 	}
@@ -88,5 +91,9 @@ public class Model {
 	public void setNames(ArrayList<String> names) {
 		this.names = names;
 	}
-
+		
+	//getters for unShuffled codenames -Aritra 
+	public ArrayList<String> getUnShuffledCodenames(){
+		return unShuffledCodenames;
+	}
 }
