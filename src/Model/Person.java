@@ -9,8 +9,8 @@ public class Person {
 	private boolean bystander = true;
 	private boolean revealed = false;
 
-	public Person(String c) {
-		codename = c;
+	public Person() {
+		
 	}
 	
 	//getters and setters
@@ -38,8 +38,12 @@ public class Person {
 		assassin = true;
 	}
 
-	public boolean isInnocent() {
+	public boolean isBystander() {
 		return bystander;
+	}
+	
+	public void setBystander() {
+		bystander = true;
 	}
 	
 	public void setRevealed() {

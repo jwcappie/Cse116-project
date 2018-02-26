@@ -33,13 +33,13 @@ public class Model {
 			Person temp = new Person();
 
 			if (i < 9) {
-				temp.setRed(true);
+				temp.setRed();
 			} else if (i >= 9 && i < 16) {
-				temp.setBlue(true);
+				temp.setBlue();
 			} else if (i >= 16 && i < 23) {
-				temp.setInnocent(true);
+				temp.setBystander();
 			} else {
-				temp.setAssassin(true);
+				temp.setAssassin();
 			}
 
 			tempList.add(temp);
