@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class Board {
 
 	private ArrayList<Location> Locations = new ArrayList <>();
+	private int count = 0;
+	private boolean blueTurn = false;
 
 	public Board() {
 		
@@ -29,6 +31,37 @@ public class Board {
 			temp.setPerson(PersonList.get(i));
 			i++;
 		}
+	}
+	
+	/*
+	 * Method defined which decrements the count, updates a Location when the
+	 * Location's codename was selected, and returns if the Location contained the
+	 * current team's Agent
+	 */
+	
+	//blueTurn is a boolean used to check if it is red or blues turn currently
+	
+	public boolean guessCheck(Location guess)
+	{
+		guess.setRevealed(true);
+		if (guess.getPerson().isBlue() == true && blueTurn == true)
+		{
+			count = count -1;
+			
+			return true;
+		}
+		else if (guess.getPerson().isRed() == true && blueTurn == false)
+		{
+			count = count -1;
+			
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		
+		
 	}
 	
 	//Getters and Setters
