@@ -12,7 +12,8 @@ public class Model {
 	private ArrayList<Person> personList;
 	private ArrayList<String> unShuffledCodenames = new ArrayList<>();   //Stores the arrayList from ReadFile as unshuffled. -Aritra
 //	private String text_File_For_CodeName = "";
-
+	private Board currentBoard;
+	
 	public Model(String fileName) {
 
 		Board currentBoard = new Board();
@@ -20,6 +21,7 @@ public class Model {
 		CreateNameList(fileName);
 		CreatePersonList();
 		currentBoard.setBoard(personList, names);
+		this.currentBoard = currentBoard;
 
 	}
 
@@ -96,4 +98,10 @@ public class Model {
 	public ArrayList<String> getUnShuffledCodenames(){
 		return unShuffledCodenames;
 	}
+
+	public Board getCurrentBoard() {
+		return currentBoard;
+	}
+
+
 }

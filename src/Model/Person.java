@@ -46,12 +46,6 @@ public class Person {
 		bystander = true;
 	}
 	
-	public void setRevealed() {
-		revealed = true;
-	}
-	
-	public boolean isRevealed() {
-		return revealed;
-	}
+
 
 }
