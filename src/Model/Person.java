@@ -13,7 +13,10 @@ public class Person {
 		
 	}
 	
-	//getters and setters
+	/**getters and setters
+	 * 
+	 * @return
+	 */
 	public boolean isRed() {
 		return red;
 	}

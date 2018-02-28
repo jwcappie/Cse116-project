@@ -8,10 +8,19 @@ import java.util.Collections;
 
 public class Model {
 
+	/** Keeps the shuffled 25 codeNames
+	 * 
+	 */
 	private ArrayList<String> names = new ArrayList<>();
+	
+	
 	private ArrayList<Person> personList;
-	private ArrayList<String> unShuffledCodenames = new ArrayList<>();   //Stores the arrayList from ReadFile as unshuffled. -Aritra
-//	private String text_File_For_CodeName = "";
+	
+	/**Stores the arrayList from ReadFile as unshuffled. -Aritra
+	 * 
+	 */
+	private ArrayList<String> unShuffledCodenames = new ArrayList<>();   
+
 	private Board currentBoard;
 	
 	public Model(String fileName) {
@@ -25,8 +34,9 @@ public class Model {
 
 	}
 
-	// Creates List of 9 red agents, 8 blue agents, 7 innocent, 1 assassin shuffles
-	// the list
+	/** Creates List of 9 red agents, 8 blue agents, 7 innocent, 1 assassin shuffles the list
+	 * 
+	 */
 	private void CreatePersonList() {
 
 		ArrayList<Person> tempList = new ArrayList<>();
@@ -53,7 +63,10 @@ public class Model {
 
 	}
 
-	// Creates List of All names, shuffles the list, adds 25 to names
+	/** Creates List of All names, shuffles the list, adds 25 to names
+	 * 
+	 * @param name
+	 */
 	private void CreateNameList(String name) {
 
 		ArrayList<String> fullList = ReadFile(name);
@@ -66,7 +79,11 @@ public class Model {
 
 	}
 
-	// Reads File and returns an ArrayList Containing each line
+	/** Reads File and returns an ArrayList Containing each line
+	 * 
+	 * @param fileName
+	 * @return
+	 */
 	private ArrayList<String> ReadFile(String fileName) {
 
 		ArrayList<String> lines = new ArrayList<>();
@@ -85,7 +102,10 @@ public class Model {
 
 	}
 
-	// getters and setters
+	/** getters and setters
+	 * 
+	 * @return
+	 */
 	public ArrayList<String> getNames() {
 		return names;
 	}
@@ -94,7 +114,10 @@ public class Model {
 		this.names = names;
 	}
 		
-	//getters for unShuffled codenames -Aritra 
+	/** getters for unShuffled codenames -Aritra 
+	 * 
+	 * @return
+	 */
 	public ArrayList<String> getUnShuffledCodenames(){
 		return unShuffledCodenames;
 	}

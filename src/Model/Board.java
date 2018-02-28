@@ -10,14 +10,20 @@ public class Board {
 
 	public Board() {
 
-		// Creates 25 instances of Location and Stores in a ArrayList
+		/** Creates 25 instances of Location and Stores in a ArrayList
+		 * 
+		 */
 		for (int i = 0; i < 25; i++) {
 			Locations.add(new Location());
 		}
 
 	}
 
-	// Given a List of People and codeNames; assigns one to each location
+	/** Given a List of People and codeNames; assigns one to each location
+	 * 
+	 * @param PersonList
+	 * @param NameList
+	 */
 	public void setBoard(ArrayList<Person> PersonList, ArrayList<String> NameList) {
 
 		int i = 0;
@@ -28,13 +34,13 @@ public class Board {
 		}
 	}
 
-	/*
+	/**
 	 * Method defined which decrements the count, updates a Location when the
 	 * Location's codename was selected, and returns if the Location contained the
 	 * current team's Agent
+	 *  blueTurn is a boolean used to check if it is red or blues turn currently
 	 */
 
-	// blueTurn is a boolean used to check if it is red or blues turn currently
 
 	public boolean guessCheck(Location guess) {
 		guess.setRevealed(true);
@@ -52,8 +58,10 @@ public class Board {
 
 	}
 
-	// Method defined which correctly returns whether or not the Board is in one of
-	// the winning states
+	/** Method defined which correctly returns whether or not the Board is in one of the winning states
+	 * 
+	 * @return
+	 */
 
 	public boolean winningState()
 	{
@@ -94,7 +102,10 @@ public class Board {
 		
 	}
 
-	// Getters and Setters
+	/** Getters and Setters
+	 * 
+	 * @return
+	 */
 
 	public ArrayList<Location> getLocations() {
 		return Locations;

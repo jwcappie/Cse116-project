@@ -11,7 +11,10 @@ public class Location {
 		Revealed = false;
 	}
 
-	//Getters and Setters
+	/** Getters and Setters
+	 * 
+	 * @return
+	 */
 	public boolean isRevealed() {
 		return Revealed;
 	}
