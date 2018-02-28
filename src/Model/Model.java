@@ -13,6 +13,7 @@ public class Model {
 	 */
 	private ArrayList<String> names = new ArrayList<>();
 	
+	private String clue;
 	
 	private ArrayList<Person> personList;
 	
@@ -101,6 +102,18 @@ public class Model {
 		return lines;
 
 	}
+	
+	public boolean checkClue(String clue) {
+		for (Location person : this.currentBoard.getLocations()) {
+			if (person.isRevealed()) {
+				return true;
+			}
+			else if (clue.equals(person.getCodeName())) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	/** getters and setters
 	 * 
@@ -124,6 +137,14 @@ public class Model {
 
 	public Board getCurrentBoard() {
 		return currentBoard;
+	}
+	
+	public String getString() {
+		return clue;
+	}
+	
+	public void setClue(String c) {
+		clue = c;
 	}
 
 
