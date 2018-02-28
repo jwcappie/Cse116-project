@@ -103,6 +103,11 @@ public class Model {
 
 	}
 	
+	/**
+	 * @param clue
+	 * Takes the clue and checks to see if it matches any of the NON-REVEALED codenames currently on the board.
+	 * @return
+	 */
 	public boolean checkClue(String clue) {
 		for (Location person : this.currentBoard.getLocations()) {
 			if (person.isRevealed()) {
