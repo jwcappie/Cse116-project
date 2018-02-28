@@ -7,6 +7,12 @@ public class Board {
 	private ArrayList<Location> Locations = new ArrayList<>();
 	private int count = 0;
 	private boolean blueTurn = false;
+	
+	private int round;
+	
+	private boolean redTurn;
+	
+	private String winner;
 
 	public Board() {
 
@@ -101,7 +107,48 @@ public class Board {
 		}
 		
 	}
+	
+	/**
+	 * Takes in an int (round number) as a parameter and sets who's turn it is during that round
+	   If redTurn is true than it is red's turn, if blueTurn is true than it is Blue's turn
+	 * @param r - the current round number
+	 *  **/
+	public void whosTurn (int r) {
+		round = r;
+			if (r % 2 == 0) {
+				redTurn = true;
+				blueTurn = false;
+			}
+			else {
+				redTurn = false;
+				blueTurn = true;
+			}
+		}
 
+	/** 
+	 * If the Assassin is revealed then it will return who the winner is
+	 * @param r - the round number
+	 * @return winner - String containing the name of the team that has won due to the other team revealing the assassin
+	 */
+	public String assassinWin (int r) {
+		Person assassin = new Person();
+		assassin.setAssassin();
+		
+		Location assassinSpot = new Location();
+		assassinSpot.setPerson(assassin);
+		
+		whosTurn(r);
+		assassinSpot.setRevealed(true);
+		
+		if (blueTurn == true && assassinSpot.isRevealed() == true) {
+			winner = "Red";
+		}
+		if (redTurn == true && assassinSpot.isRevealed() == true) {
+			winner = "Blue"; 
+		}
+		return winner;
+	}
+	
 	/** Getters and Setters
 	 * 
 	 * @return
@@ -113,6 +160,14 @@ public class Board {
 
 	public void setLocations(ArrayList<Location> locations) {
 		Locations = locations;
+	}
+	
+	public int getRound() {
+		return round;
+	}
+	
+	public void setRound(int r) {
+		round = r;
 	}
 
 }

@@ -232,6 +232,10 @@ public class ProjectTest {
 	 */
 	@Test
 	public void AssassinTest() {
+		Board testBoard = new Board();
+		
+		assertEquals("It was Red's turn, so Blue was meant to win", testBoard.assassinWin(0), "Blue");
+		assertEquals("It was Blue's turn, so Red was meant to win", testBoard.assassinWin(1), "Red");
 
 	}
 
