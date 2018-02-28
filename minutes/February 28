@@ -1,0 +1,27 @@
+Meeting Minutes for February 28th:
+
+Meeting Attendance:
+	1. Justin Cappiello
+	2. Aritra Paul
+	3. Philip Moraski
+	4. Robert Straub [M]
+	
+Tasks Completed Since Last Meeting:
+	1. Added multiple methods to cover what needs to be tested.
+		- Includes but is not limited to checkGuess, winningStates, whosTurn, assassinWin.
+	2. Added jUnit tests for the following methods:
+		- AssassinWinTest, CodenameListTest, WinningStateTest
+
+Tasks Worked Upon but not Completed:
+	1. JavaDoc
+		- /** Comments on every method, test, code written that does something */
+	2. Methods to complete the missing jUnit tests
+
+Goals for Next Meeting:
+	1. Update tests.txt file to match what methods each member
+	2. javaDoc completed
+	3. Complete the remaining jUnit tests.
+	
+Scheduled Next Meeting(s):
+	1. Friday 11am
+	2. Sunday 2pm
