@@ -6,10 +6,9 @@ public class Board {
 
 	private ArrayList<Location> Locations = new ArrayList<>();
 	private int count = 0;
-	
 	private boolean blueTurn = false;
 	
-	private int round = 0;
+	private int round;
 	
 	private boolean redTurn;
 	
@@ -89,7 +88,6 @@ public class Board {
 			}
 			else if(check.getPerson().isAssassin() == true)
 			{
-				assassinWin(round);
 				return true;
 			}
 			}
@@ -97,12 +95,10 @@ public class Board {
 		
 		if(redCount == 9)
 		{
-			winner = "Red";
 			return true;
 		}
 		else if (blueCount == 8)
 		{
-			winner = "Blue";
 			return true;
 		}
 		else
@@ -135,20 +131,18 @@ public class Board {
 	 * @return winner - String containing the name of the team that has won due to the other team revealing the assassin
 	 */
 	public String assassinWin (int r) {
-		Person assassin = new Person();
-		assassin.setAssassin();
+		round = r;
+		whosTurn(round);
 		
-		Location assassinSpot = new Location();
-		assassinSpot.setPerson(assassin);
-		
-		whosTurn(r);
-		assassinSpot.setRevealed(true);
-		
-		if (blueTurn == true && assassinSpot.isRevealed() == true) {
-			winner = "Red";
-		}
-		if (redTurn == true && assassinSpot.isRevealed() == true) {
-			winner = "Blue"; 
+		for (Location assassinLocate : Locations) {
+			if (assassinLocate.getPerson().isAssassin() == true) {
+				if (blueTurn == true && assassinLocate.isRevealed() == true) {
+					winner = "Red";
+				}
+				if (redTurn == true && assassinLocate.isRevealed() == true) {
+					winner = "Blue"; 
+				}
+			}
 		}
 		return winner;
 	}
