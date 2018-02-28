@@ -167,5 +167,17 @@ public class Board {
 	public void setRound(int r) {
 		round = r;
 	}
+	
+	/** Getter and Setter method of Redturn
+	 * 
+	 * @return
+	 */
+	public boolean getRedTurn() {
+		return redTurn;
+	}
+	
+	public void setRedTurn(boolean x) {
+		redTurn = x;
+	}
 
 }

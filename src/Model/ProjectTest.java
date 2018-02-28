@@ -1,6 +1,7 @@
 package Model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -10,11 +11,33 @@ import org.junit.Test;
 
 public class ProjectTest {
 
+
 	/** Defines a Board class contains 25 Location instances
-	 * 
+	 * When game started, it is Red team's move and each of Board's 25 
+	 * Location instances is assigned a codename, Person, and is Not Revealed [15 points]
 	 */
 	@Test
 	public void LocationListTest() {
+		Board test = new Board();
+		Location test2 = new Location();
+		ArrayList<Location> m = test.getLocations();
+		int tooManyLocations = 0;
+		int tooLittleLocations = 0;
+		if(m.size() > 25) {
+			tooManyLocations = 1;
+		} else if (m.size() < 25) {
+			tooLittleLocations = 1;
+		}
+		assertEquals("There are more than 25 locations", 0, tooManyLocations);
+		assertEquals("There are less than 25 locations", 0, tooLittleLocations);
+		
+		//Is Red team the first player?
+		test.whosTurn(0);
+	    assertTrue("Red is not the first team to start", test.getRedTurn());
+		
+	    assertTrue(test2.getCodeName() != null);
+	    assertTrue(test2.getPerson() != null);
+	    assertFalse(test2.isRevealed());
 
 	}
 
