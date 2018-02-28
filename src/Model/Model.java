@@ -46,9 +46,9 @@ public class Model {
 
 			if (i < 9) {
 				temp.setRed();
-			} else if (i >= 9 && i < 16) {
+			} else if (i >= 9 && i < 17) {
 				temp.setBlue();
-			} else if (i >= 16 && i < 23) {
+			} else if (i >= 17 && i < 24) {
 				temp.setBystander();
 			} else {
 				temp.setAssassin();

@@ -173,7 +173,7 @@ public class ProjectTest {
 	 * 
 	 */
 	@Test
-	public void WinningStateTest() {
+	public void WinningStateTestRed() {
 		Model y = new Model("GameWords.txt");
 		Board x = y.getCurrentBoard();
 		
@@ -183,6 +183,33 @@ public class ProjectTest {
 			
 
 			if (temp.getPerson().isRed() == true) {
+				temp.setRevealed(true);
+			}
+				
+
+			tempList.add(temp);
+		}
+
+		Collections.shuffle(tempList);
+		
+	
+		
+		
+		assertTrue(x.winningState());
+
+	}
+	
+	@Test
+	public void WinningStateTestBlue() {
+		Model y = new Model("GameWords.txt");
+		Board x = y.getCurrentBoard();
+		
+		ArrayList<Location> tempList = new ArrayList<>();
+
+		for (Location temp: x.getLocations()) {
+			
+
+			if (temp.getPerson().isBlue() == true) {
 				temp.setRevealed(true);
 			}
 				
