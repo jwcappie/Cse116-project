@@ -6,9 +6,10 @@ public class Board {
 
 	private ArrayList<Location> Locations = new ArrayList<>();
 	private int count = 0;
+	
 	private boolean blueTurn = false;
 	
-	private int round;
+	private int round = 0;
 	
 	private boolean redTurn;
 	
@@ -88,6 +89,7 @@ public class Board {
 			}
 			else if(check.getPerson().isAssassin() == true)
 			{
+				assassinWin(round);
 				return true;
 			}
 			}
@@ -95,10 +97,12 @@ public class Board {
 		
 		if(redCount == 9)
 		{
+			winner = "Red";
 			return true;
 		}
 		else if (blueCount == 8)
 		{
+			winner = "Blue";
 			return true;
 		}
 		else
