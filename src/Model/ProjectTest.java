@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 import org.junit.Test;
 
@@ -147,6 +148,35 @@ public class ProjectTest {
 
 	@Test
 	public void PersonListTest() {
+		Model m = new Model("GameWords.txt"); 
+		Model n = new Model("GameWords.txt");
+		assertFalse(m.CreatePersonList()==null);
+		assertFalse(m.CreatePersonList() == n.CreatePersonList());
+		assertEquals(25, m.CreatePersonList().size());
+		assertEquals(25, n.CreatePersonList().size());
+		// test for the number of blues
+		
+		Model x = new Model("GameWords.txt"); 
+		ArrayList<Person> personList = x.CreatePersonList();
+		 ArrayList<String> s= new ArrayList<>(); 
+		 HashMap<Integer, String> blue =new HashMap<>(); 
+		 HashMap<Integer, String> red = new HashMap<>();
+		 HashMap<Integer, String> assasin=new HashMap<>(); 
+		 HashMap<Integer, String> innocent = new HashMap<>(); 	
+	for (Person p : personList) {
+			s.add(p.getCodename());
+					for(int i=0; i<s.size();i++) {
+										if (s.get(i)=="red") {red.put(i,s.get(i));}
+										if (s.get(i)=="blue") {blue.put(i, s.get(i));}
+										if (s.get(i)=="innocent") {innocent.put(i, s.get(i));}
+										if (s.get(i)=="assassin") {assasin.put(i, s.get(i));}
+							} 
+					}
+		assertEquals("This should give you the number of red's: " , 9 ,red.size() );
+		assertEquals("This should give you the number of blue's: " , 8 ,blue.size() );
+		assertEquals("This should give you the number of bystander's : " , 7 ,innocent.size() );
+		assertEquals("This should give you the number of assassin's :" , 1 ,assasin.size() );
+		
 
 	}
 

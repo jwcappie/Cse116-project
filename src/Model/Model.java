@@ -35,32 +35,41 @@ public class Model {
 
 	}
 
-	/** Creates List of 9 red agents, 8 blue agents, 7 innocent, 1 assassin shuffles the list
+	/**
+	 * This method generates 25 person types, and assigns them  to be 
+	 *  9 red agents, 8 blue agents, 7 innocent and 1 assassin, 
+	 *  the Collections.shuffle shuffles the list to randomize the order of 
+	 *  the assigned people 
+	 * 
+	 * @return ArrayList of type person 
 	 * 
 	 */
-	private void CreatePersonList() {
+	 
+	public ArrayList<Person> CreatePersonList() {
 
 		ArrayList<Person> tempList = new ArrayList<>();
+		Person red = new Person("red");
+		Person blue = new Person("blue");
+		Person Bystander= new Person("innocent");
+		Person assassin = new Person("assassin");
+		for (int i = 0; i < 9; i++) { red.setRed(); 
+		tempList.add(red); }
+		
+		for (int i = 0; i <8; i++) {blue.setBlue();
+		tempList.add(blue);  }
+		
+		for (int i = 0; i <7; i++) {Bystander.isBystander();
+		tempList.add(Bystander);}
 
-		for (int i = 0; i < 25; i++) {
-			Person temp = new Person();
-
-			if (i < 9) {
-				temp.setRed();
-			} else if (i >= 9 && i < 17) {
-				temp.setBlue();
-			} else if (i >= 17 && i < 24) {
-				temp.setBystander();
-			} else {
-				temp.setAssassin();
-			}
-
-			tempList.add(temp);
-		}
-
+		for (int i = 0; i < 1; i++) { assassin.setAssassin();
+		tempList.add(assassin);}
+		
+	
 		Collections.shuffle(tempList);
 
-		personList = tempList;
+		 personList = tempList;
+		 return personList; 
+		
 
 	}
 

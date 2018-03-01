@@ -66,7 +66,7 @@ public class Board {
 
 	/** Method defined which correctly returns whether or not the Board is in one of the winning states
 	 * 
-	 * @return
+	 * @return 
 	 */
 
 	public boolean winningState()
