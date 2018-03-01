@@ -37,6 +37,7 @@ public class ProjectTest {
 	    assertTrue("Red is not the first team to start", test.getRedTurn());
 		
 	    assertTrue(test2.getCodeName() != null);
+	    assertTrue(test2.getCodeName() != "");
 	    assertTrue(test2.getPerson() != null);
 	    assertFalse(test2.isRevealed());
 
