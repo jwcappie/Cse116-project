@@ -12,10 +12,10 @@ import org.junit.Test;
 
 public class ProjectTest {
 
-
-	/** Defines a Board class contains 25 Location instances
-	 * When game started, it is Red team's move and each of Board's 25 
-	 * Location instances is assigned a codename, Person, and is Not Revealed [15 points]
+	/**
+	 * Defines a Board class contains 25 Location instances When game started, it is
+	 * Red team's move and each of Board's 25 Location instances is assigned a
+	 * codename, Person, and is Not Revealed [15 points]
 	 */
 	@Test
 	public void LocationListTest() {
@@ -24,28 +24,29 @@ public class ProjectTest {
 		ArrayList<Location> m = test.getLocations();
 		int tooManyLocations = 0;
 		int tooLittleLocations = 0;
-		if(m.size() > 25) {
+		if (m.size() > 25) {
 			tooManyLocations = 1;
 		} else if (m.size() < 25) {
 			tooLittleLocations = 1;
 		}
 		assertEquals("There are more than 25 locations", 0, tooManyLocations);
 		assertEquals("There are less than 25 locations", 0, tooLittleLocations);
-		
-		//Is Red team the first player?
+
+		// Is Red team the first player?
 		test.whosTurn(0);
-	    assertTrue("Red is not the first team to start", test.getRedTurn());
-		
-	    assertTrue(test2.getCodeName() != null);
-	    assertTrue(test2.getCodeName() != "");
-	    assertTrue(test2.getPerson() != null);
-	    assertFalse(test2.isRevealed());
+		assertTrue("Red is not the first team to start", test.getRedTurn());
+
+		assertTrue(test2.getCodeName() != null);
+		assertTrue(test2.getCodeName() != "");
+		assertTrue(test2.getPerson() != null);
+		assertFalse(test2.isRevealed());
 
 	}
 
-	/** Correctly reads codenames from a file named GameWords.txt and stores them in a List
-	 * Uses a String to append the list into one string. 
-	 * Then compares it with the given String.
+	/**
+	 * Correctly reads codenames from a file named GameWords.txt and stores them in
+	 * a List Uses a String to append the list into one string. Then compares it
+	 * with the given String.
 	 */
 	@Test
 	public void ReadCodenameTest() {
@@ -117,76 +118,83 @@ public class ProjectTest {
 	}
 
 	/**
-	 * Main function: Checks to see if names has a list containing 25 distinct codenames selected at random
+	 * Main function: Checks to see if names has a list containing 25 distinct
+	 * codenames selected at random
 	 * 
-	 * Creates a new instance of Model
-	 * Copies over name from Model "m" using getNames()
-	 * It Checks the size of the Arraylist<String> name
-	 * Uses 2 for each loop to check whether the codeNames repeat itself or not.
+	 * Creates a new instance of Model Copies over name from Model "m" using
+	 * getNames() It Checks the size of the Arraylist<String> name Uses 2 for each
+	 * loop to check whether the codeNames repeat itself or not.
 	 */
 	@Test
 	public void CodenameListTest() {
-			  Model m = new Model("GameWords.txt");
-			  ArrayList<String> test = m.getNames();
-			  assertEquals("The length of codeNames is wrong.", 25, m.getNames().size());
-			  int _25_means_Words_Dont_Repeat = 0;
-			  for(String s: test) {
-				  for(String s2: test) {
-					  if(s.equals(s2)) {
-						  _25_means_Words_Dont_Repeat++;
-					  }
-					  
-				  }
-			  }
-			  assertEquals("There is at least one codeName which repeats itself", 25, _25_means_Words_Dont_Repeat);
-			  
+		Model m = new Model("GameWords.txt");
+		ArrayList<String> test = m.getNames();
+		assertEquals("The length of codeNames is wrong.", 25, m.getNames().size());
+		int _25_means_Words_Dont_Repeat = 0;
+		for (String s : test) {
+			for (String s2 : test) {
+				if (s.equals(s2)) {
+					_25_means_Words_Dont_Repeat++;
+				}
+
+			}
+		}
+		assertEquals("There is at least one codeName which repeats itself", 25, _25_means_Words_Dont_Repeat);
+
 	}
 
-	/** 
+	/**
 	 * Creates List containing randomly generated assignments for each of the person
 	 * types
 	 */
 
 	@Test
 	public void PersonListTest() {
-		Model m = new Model("GameWords.txt"); 
+		Model m = new Model("GameWords.txt");
 		Model n = new Model("GameWords.txt");
-		assertFalse(m.CreatePersonList()==null);
+		assertFalse(m.CreatePersonList() == null);
 		assertFalse(m.CreatePersonList() == n.CreatePersonList());
 		assertEquals(25, m.CreatePersonList().size());
 		assertEquals(25, n.CreatePersonList().size());
 		// test for the number of blues
-		
-		Model x = new Model("GameWords.txt"); 
+
+		Model x = new Model("GameWords.txt");
 		ArrayList<Person> personList = x.CreatePersonList();
-		 ArrayList<String> s= new ArrayList<>(); 
-		 HashMap<Integer, String> blue =new HashMap<>(); 
-		 HashMap<Integer, String> red = new HashMap<>();
-		 HashMap<Integer, String> assasin=new HashMap<>(); 
-		 HashMap<Integer, String> innocent = new HashMap<>(); 	
-	for (Person p : personList) {
+		ArrayList<String> s = new ArrayList<>();
+		HashMap<Integer, String> blue = new HashMap<>();
+		HashMap<Integer, String> red = new HashMap<>();
+		HashMap<Integer, String> assasin = new HashMap<>();
+		HashMap<Integer, String> innocent = new HashMap<>();
+		for (Person p : personList) {
 			s.add(p.getCodename());
-					for(int i=0; i<s.size();i++) {
-										if (s.get(i)=="red") {red.put(i,s.get(i));}
-										if (s.get(i)=="blue") {blue.put(i, s.get(i));}
-										if (s.get(i)=="innocent") {innocent.put(i, s.get(i));}
-										if (s.get(i)=="assassin") {assasin.put(i, s.get(i));}
-							} 
-					}
-		assertEquals("This should give you the number of red's: " , 9 ,red.size() );
-		assertEquals("This should give you the number of blue's: " , 8 ,blue.size() );
-		assertEquals("This should give you the number of bystander's : " , 7 ,innocent.size() );
-		assertEquals("This should give you the number of assassin's :" , 1 ,assasin.size() );
-		
+			for (int i = 0; i < s.size(); i++) {
+				if (s.get(i) == "red") {
+					red.put(i, s.get(i));
+				}
+				if (s.get(i) == "blue") {
+					blue.put(i, s.get(i));
+				}
+				if (s.get(i) == "innocent") {
+					innocent.put(i, s.get(i));
+				}
+				if (s.get(i) == "assassin") {
+					assasin.put(i, s.get(i));
+				}
+			}
+		}
+		assertEquals("This should give you the number of red's: ", 9, red.size());
+		assertEquals("This should give you the number of blue's: ", 8, blue.size());
+		assertEquals("This should give you the number of bystander's : ", 7, innocent.size());
+		assertEquals("This should give you the number of assassin's :", 1, assasin.size());
 
 	}
 
 	/**
-	 *   When game started, it is Red team's move and each of Board's 25 Location
-	 *   instances is assigned a codename, Person, and is Not Revealed
+	 * When game started, it is Red team's move and each of Board's 25 Location
+	 * instances is assigned a codename, Person, and is Not Revealed
 	 * 
 	 */
-	
+
 	@Test
 	public void StartGameTest() {
 
@@ -195,18 +203,18 @@ public class ProjectTest {
 	/**
 	 * Method defined which correctly returns if a clue is legal or illegal
 	 */
-	
+
 	@Test
 	public void ClueLegalityTest() {
 
 	}
 
 	/**
-	 *  Method defined which decrements the count, updates a Location when the
-	  Location's codename was selected, and returns if the Location contained the
-	  current team's Agent
+	 * Method defined which decrements the count, updates a Location when the
+	 * Location's codename was selected, and returns if the Location contained the
+	 * current team's Agent
 	 */
-	
+
 	@Test
 	public void CountTest() {
 
@@ -222,79 +230,125 @@ public class ProjectTest {
 
 	}
 
-	/** Method defined which correctly returns whether or not the Board is in one of
-	     the winning states
+	/**
+	 * Method defined which correctly returns whether or not the Board is in one of
+	 * the winning states
 	 * 
 	 */
+
+	// Sets all red to revealed and tests if in winning state
 	@Test
 	public void WinningStateTestRed() {
 		Model y = new Model("GameWords.txt");
 		Board x = y.getCurrentBoard();
-		
-		ArrayList<Location> tempList = new ArrayList<>();
 
-		for (Location temp: x.getLocations()) {
-			
+		ArrayList<Location> tempList = new ArrayList<>();
+		
+		for (Location temp : x.getLocations()) {
 
 			if (temp.getPerson().isRed() == true) {
 				temp.setRevealed(true);
 			}
-				
 
 			tempList.add(temp);
 		}
 
 		Collections.shuffle(tempList);
 		
-	
 		
-		
-		assertTrue(x.winningState());
+		assertTrue(x.winningState(tempList));
 
 	}
-	
+
+	// Sets all blue to revealed and tests if in winning state
+
 	@Test
 	public void WinningStateTestBlue() {
 		Model y = new Model("GameWords.txt");
 		Board x = y.getCurrentBoard();
-		
+
 		ArrayList<Location> tempList = new ArrayList<>();
 
-		for (Location temp: x.getLocations()) {
-			
+		for (Location temp : x.getLocations()) {
 
 			if (temp.getPerson().isBlue() == true) {
 				temp.setRevealed(true);
 			}
-				
+
+			tempList.add(temp);
+		}
+
+		Collections.shuffle(tempList);
+
+		assertTrue(x.winningState(tempList));
+
+	}
+
+	// Sets assassin to revealed and tests if in winning state
+
+	@Test
+	public void WinningStateTestAssassin() {
+		Model y = new Model("GameWords.txt");
+		Board x = y.getCurrentBoard();
+
+		ArrayList<Location> tempList = new ArrayList<>();
+
+		for (Location temp : x.getLocations()) {
+
+			if (temp.getPerson().isAssassin() == true) {
+				temp.setRevealed(true);
+			}
 
 			tempList.add(temp);
 		}
 
 		Collections.shuffle(tempList);
 		
-	
-		
-		
-		assertTrue(x.winningState());
+
+		assertTrue(x.winningState(tempList));
 
 	}
 
-	/** Method defined which correctly returns which team did not lose (i.e., win)
-	// when the Assassin was revealed
+	// Sets all Bystanders to revealed and tests if not in winning state
+
+	@Test
+	public void WinningStateTestNoWin() {
+		Model y = new Model("GameWords.txt");
+		Board x = y.getCurrentBoard();
+
+		ArrayList<Location> tempList = new ArrayList<>();
+
+		for (Location temp : x.getLocations()) {
+
+			if (temp.getPerson().isBystander() == true) {
+				temp.setRevealed(true);
+			}
+
+			tempList.add(temp);
+		}
+
+		Collections.shuffle(tempList);
+
+
+		assertFalse(x.winningState(tempList));
+	}
+
+	/**
+	 * Method defined which correctly returns which team did not lose (i.e., win) //
+	 * when the Assassin was revealed
 	 * 
 	 */
 	@Test
 	public void AssassinTest() {
 		Model test = new Model("GameWords.txt");
 		Board testBoard = test.getCurrentBoard();
-		
+
 		for (Location assassinLocate : testBoard.getLocations()) {
 			if (assassinLocate.getPerson().isAssassin() == true) {
 				assassinLocate.setRevealed(true);
 			}
 		}
-		
+
 		assertEquals("It was Red's turn, so Blue was meant to win", testBoard.assassinWin(0), "Blue");
 		assertEquals("It was Blue's turn, so Red was meant to win", testBoard.assassinWin(1), "Red");
 

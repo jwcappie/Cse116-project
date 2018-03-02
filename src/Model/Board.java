@@ -34,6 +34,7 @@ public class Board {
 
 		int i = 0;
 		for (Location temp : Locations) {
+			temp.setRevealed(false);
 			temp.setCodeName(NameList.get(i));
 			temp.setPerson(PersonList.get(i));
 			i++;
@@ -64,17 +65,17 @@ public class Board {
 
 	}
 
-	/** Method defined which correctly returns whether or not the Board is in one of the winning states
+	/** Method defined which correctly returns whether or not the Board is in one of the winning states given and array list of Locations
 	 * 
 	 * @return 
 	 */
 
-	public boolean winningState()
+	public boolean winningState(ArrayList<Location> LocationTemp)
 	{
 		int redCount = 0;
 		int blueCount = 0;
 		
-		for(Location check: Locations)
+		for(Location check: LocationTemp)
 		{
 			if(check.isRevealed()== true)
 			{

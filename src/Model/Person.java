@@ -6,7 +6,7 @@ public class Person {
 	private boolean red= false;
 	private boolean blue = false;
 	private boolean assassin = false;
-	private boolean bystander = true;
+	private boolean bystander = false;
 	private boolean revealed = false;
 	/**
 	 * This constructor assigns a string value to the field codeName
