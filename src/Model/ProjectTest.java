@@ -215,18 +215,92 @@ public class ProjectTest {
 	 * current team's Agent
 	 */
 
+	/**
+	 * Method defined which decrements the count, updates a Location when the
+	 * Location's codename was selected, and returns if the Location contained the
+	 * current team's Agent
+	 */
+	
+	/* Checks if guessCheck method correctly returns true when it is blues turn and
+	 a blue agent is chosen. 
+	 also checks if the count is correct and the Location is set as revealed
+	*/
+
 	@Test
-	public void CountTest() {
+	public void CorrectGuessCheckandUpdateTestBlue() {
+
+		Model y = new Model("GameWords.txt");
+		Board x = y.getCurrentBoard();
+
+		x.setCount(9);
+		int count = 9;
+		x.setBlueTurn(true);
+
+		for (Location temp : x.getLocations()) {
+			if (temp.getPerson().isBlue() == true) {
+				count = count - 1;
+				assertTrue(x.guessCheck(temp.getCodeName()));
+				assertTrue(temp.isRevealed());
+				assertEquals(count, x.getCount());
+			}
+		}
+
+	}
+	
+	/* Checks if guessCheck method correctly returns true when it is reds turn and
+	 a red agent is chosen. 
+	 also checks if the count is correct and the Location is set as revealed
+	*/
+
+	@Test
+	public void CorrectGuessCheckandUpdateTestRed() {
+
+		Model y = new Model("GameWords.txt");
+		Board x = y.getCurrentBoard();
+
+		x.setCount(9);
+		int count = 9;
+		x.setBlueTurn(false);
+
+		for (Location temp : x.getLocations()) {
+			if (temp.getPerson().isRed() == true) {
+				count = count - 1;
+				assertTrue(x.guessCheck(temp.getCodeName()));
+				assertTrue(temp.isRevealed());
+				assertEquals(count, x.getCount());
+			}
+		}
 
 	}
 
-	@Test
-	public void LocationUpdateTest() {
+	/* Checks if guessCheck method correctly returns false when it is blues turn and
+	 either a red agent, bystander, or Assassin is chosen
+	  also checks if the count is correct and the Location is set as revealed
+	*/
+	
+	
+	public void IncorrectGuessCheckandUpdateTest() {
 
-	}
+		Model y = new Model("GameWords.txt");
+		Board x = y.getCurrentBoard();
 
-	@Test
-	public void ContainsAgentTest() {
+		x.setCount(9);
+		x.setBlueTurn(true);
+
+		for (Location temp : x.getLocations()) {
+			if (temp.getPerson().isRed() == true) {
+
+				assertFalse(x.guessCheck(temp.getCodeName()));
+				assertTrue(temp.isRevealed());
+
+			} else if (temp.getPerson().isAssassin()) {
+				assertFalse(x.guessCheck(temp.getCodeName()));
+				assertTrue(temp.isRevealed());
+			} else if (temp.getPerson().isBystander()) {
+				assertFalse(x.guessCheck(temp.getCodeName()));
+				assertTrue(temp.isRevealed());
+			}
+		}
 
 	}
 

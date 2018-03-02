@@ -44,27 +44,32 @@ public class Board {
 	/**
 	 * Method defined which decrements the count, updates a Location when the
 	 * Location's codename was selected, and returns if the Location contained the
-	 * current team's Agent
-	 *  blueTurn is a boolean used to check if it is red or blues turn currently
+	 * current team's Agent blueTurn is a boolean used to check if it is red or
+	 * blues turn currently
+	 * 
+	 * Takes in codename-- checks for coresponding location then if the guess is correct or not
 	 */
 
+	public boolean guessCheck(String guessCode) {
 
-	public boolean guessCheck(Location guess) {
-		guess.setRevealed(true);
-		if (guess.getPerson().isBlue() == true && blueTurn == true) {
-			count = count - 1;
+		for (Location guess : Locations) {
+			if (guessCode.equals(guess.getCodeName())) {
+				guess.setRevealed(true);
+				if (guess.getPerson().isBlue() == true && blueTurn == true) {
+					count = count - 1;
 
-			return true;
-		} else if (guess.getPerson().isRed() == true && blueTurn == false) {
-			count = count - 1;
+					return true;
+				} else if (guess.getPerson().isRed() == true && blueTurn == false) {
+					count = count - 1;
 
-			return true;
-		} else {
-			return false;
-		}
+					return true;
+				}
+				}
+			}
+		return false;
 
+		
 	}
-
 	/** Method defined which correctly returns whether or not the Board is in one of the winning states given and array list of Locations
 	 * 
 	 * @return 
@@ -179,6 +184,30 @@ public class Board {
 	
 	public void setRedTurn(boolean x) {
 		redTurn = x;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public boolean isBlueTurn() {
+		return blueTurn;
+	}
+
+	public void setBlueTurn(boolean blueTurn) {
+		this.blueTurn = blueTurn;
+	}
+
+	public String getWinner() {
+		return winner;
+	}
+
+	public void setWinner(String winner) {
+		this.winner = winner;
 	}
 
 }
