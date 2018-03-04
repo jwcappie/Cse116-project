@@ -2,7 +2,7 @@ package Model;
 
 public class Person {
 	
-	private String codename;
+	private String personType;
 	private boolean red= false;
 	private boolean blue = false;
 	private boolean assassin = false;
@@ -83,15 +83,15 @@ public class Person {
 	/**
 	 * @return the codename as string
 	 */
-	public String getCodename() {
-		return codename;
+	public String getPersonType() {
+		return personType;
 	}
 
 	/**
 	 * @param codename the codename to set
 	 */
 	public void setCodename(String codename) {
-		this.codename = codename;
+		this.personType = codename;
 	}
 	
 

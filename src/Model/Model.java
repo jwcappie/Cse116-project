@@ -107,17 +107,21 @@ public class Model {
 	private ArrayList<String> ReadFile(String fileName) {
 
 		ArrayList<String> lines = new ArrayList<>();
+		ArrayList<String> UnshuffledLines = new ArrayList<>();
 
 		try {
 
 			for (String line : Files.readAllLines(Paths.get(fileName))) {
+				
 				lines.add(line);
+				UnshuffledLines.add(line);
 			}
+			unShuffledCodenames = UnshuffledLines; 
 
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
-		unShuffledCodenames = lines;
+
 		return lines;
 
 	}

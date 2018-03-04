@@ -36,11 +36,16 @@ public class ProjectTest {
 		test.whosTurn(0);
 		assertTrue("Red is not the first team to start", test.getRedTurn());
 
-		assertTrue(test2.getCodeName() != null);
+		assertfalse(test2.getCodeName() == null);
 		assertTrue(test2.getCodeName() != "");
-		assertTrue(test2.getPerson() != null);
+		assertfalse(test2.getPerson() == null);
 		assertFalse(test2.isRevealed());
 
+	}
+
+	private void assertfalse(boolean b) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	/**
@@ -114,7 +119,7 @@ public class ProjectTest {
 				+ "TRIP\r\n" + "TRUNK\r\n" + "TUBE\r\n" + "TURKEY\r\n" + "UNDERTAKER\r\n" + "UNICORN\r\n" + "VACUUM\r\n"
 				+ "VAN\r\n" + "VET\r\n" + "WAKE\r\n" + "WALL\r\n" + "WAR\r\n" + "WASHER\r\n" + "WASHINGTON\r\n"
 				+ "WATCH\r\n" + "WATER\r\n" + "WAVE\r\n" + "WEB\r\n" + "WELL\r\n" + "WHALE\r\n" + "WHIP\r\n"
-				+ "WIND\r\n" + "WITCH\r\n" + "WORM\r\n" + "YARD", appendedCodename);
+				+ "WIND\r\n" + "WITCH\r\n" + "WORM\r\n" + "YARD\r\n", appendedCodename);
 	}
 
 	/**
@@ -166,7 +171,7 @@ public class ProjectTest {
 		HashMap<Integer, String> assasin = new HashMap<>();
 		HashMap<Integer, String> innocent = new HashMap<>();
 		for (Person p : personList) {
-			s.add(p.getCodename());
+			s.add(p.getPersonType());
 			for (int i = 0; i < s.size(); i++) {
 				if (s.get(i) == "red") {
 					red.put(i, s.get(i));
