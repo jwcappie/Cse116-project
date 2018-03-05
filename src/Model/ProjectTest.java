@@ -192,7 +192,15 @@ public class ProjectTest {
 
 	@Test
 	public void StartGameTest() {
-
+		Model x = new Model("smallWordList.txt");
+		Board temp = x.getCurrentBoard();
+		ArrayList<Location> loc = temp.getLocations();
+		Location person = loc.get(3);
+		assertTrue(temp.getRedTurn());
+		
+		assertFalse(person.isRevealed());
+		assertTrue(!(person.getCodeName() == null));
+		assertTrue(!(person.getPerson() == null));
 	}
 
 	/**
@@ -201,6 +209,10 @@ public class ProjectTest {
 
 	@Test
 	public void ClueLegalityTest() {
+		Model x = new Model("smallWordList.txt");
+		String codeName = x.getNames().get(0);
+		assertFalse(x.checkClue(codeName));
+		assertTrue(x.checkClue("LegalClue"));
 
 	}
 
