@@ -10,7 +10,7 @@ public class Board {
 	
 	private int round;
 	
-	private boolean redTurn;
+	private boolean redTurn = true;
 	
 	private String winner;
 
