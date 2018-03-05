@@ -32,14 +32,15 @@ public class ProjectTest {
 		assertEquals("There are more than 25 locations", 0, tooManyLocations);
 		assertEquals("There are less than 25 locations", 0, tooLittleLocations);
 
+		// Is Red team the first player?
+		test.whosTurn(0);
+		assertTrue("Red is not the first team to start", test.getRedTurn());
+
 		assertFalse(test2.getCodeName() == null);
 		assertTrue(test2.getCodeName() != "");
 		assertFalse(test2.getPerson() == null);
 		assertFalse(test2.isRevealed());
-
 	}
-
-
 
 	/**
 	 * Correctly reads codenames from a file named GameWords.txt and stores them in
@@ -195,15 +196,7 @@ public class ProjectTest {
 
 	@Test
 	public void StartGameTest() {
-			Model x = new Model("smallWordList.txt");
-			Board temp = x.getCurrentBoard();
-			ArrayList<Location> loc = temp.getLocations();
-			Location person = loc.get(3);
-			assertTrue(temp.getRedTurn());
-			
-			assertFalse(person.isRevealed());
-			assertTrue(!(person.getCodeName() == null));
-			assertTrue(!(person.getPerson() == null));
+
 	}
 
 	/**
@@ -212,10 +205,7 @@ public class ProjectTest {
 
 	@Test
 	public void ClueLegalityTest() {
-		Model x = new Model("smallWordList.txt");
-		String codeName = x.getNames().get(0);
-		assertFalse(x.checkClue(codeName));
-		assertTrue(x.checkClue("LegalClue"));
+
 	}
 
 	/**
@@ -416,6 +406,22 @@ public class ProjectTest {
 		assertFalse(x.winningState(tempList));
 	}
 
+	/**
+	 * Method correctly returns which team's turn it is when a round number is called
+	 */
+	@Test
+	public void WhosTurnTest() {
+		Model test = new Model("GameWords.txt");
+		Board testBoard = test.getCurrentBoard();
+		testBoard.whosTurn(0);
+		boolean test0 = testBoard.getRedTurn();
+		testBoard.whosTurn(1);
+		boolean test1 = testBoard.getRedTurn();
+		assertEquals("It is an even number turn so it should be Red's turn", test0, true);
+		assertEquals("It is an odd number turn so it should not be Red's turn", test1, false);
+
+	}
+	
 	/**
 	 * Method defined which correctly returns which team did not lose (i.e., win) //
 	 * when the Assassin was revealed

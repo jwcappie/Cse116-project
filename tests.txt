@@ -1,30 +1,36 @@
 Defines a Board class contains 25 Location instances [6 points]
-	
+Method which does this : board [Located in Board class]
+jUnit test for this : LocationListTest
 	
 Correctly reads codenames from a file named GameWords.txt and stores them in a List [10 points] (sample files you can use are here and here)
-	
+Method which does this : ReadFile [Located in Model class]
+jUnit test for this : ReadCodenameTest
 	
 Creates List containing 25 distinct codenames selected at random [10 points] (hint: Java has some methods that could be a starting point for your implementation)
-
+Method which does this : CreateNameList [Located in Model class]
+jUnit test for this : CodenameListTest
 
 Creates List containing randomly generated assignments for each of the 9 Red Agents, 8 Blue Agents, 7 Innocent Bystanders, and 1 Assassin [10 points] (hint: Java has some methods that could be a starting point for how to randomly order locations)
+Method which does this : CreatePersonList [Located in Model class]
+jUnit test for this : PersonListTest
 
+ // When game started, it is Red team's move and each of Board's 25 Location instances is assigned a codename, Person, and is Not Revealed [15 points]
+ // Method which does this : [Located in ______ class]
+ // jUnit test for this : StartGameTest
 
-When game started, it is Red team's move and each of Board's 25 Location instances is assigned a codename, Person, and is Not Revealed [15 points]
-
-
-Method defined which correctly returns if a clue is legal or illegal (clues cannot equal a current codename unless that codename is in a locations that was already Revealed) [10 points]  		
-
+ // Method defined which correctly returns if a clue is legal or illegal (clues cannot equal a current codename unless that codename is in a locations that was already Revealed) [10 points]  		
+ // Method which does this : [Located in ______ class]
+ // jUnit test for this : ClueLegalityTest
 
 Method defined which decrements the count, updates a Location when the Location's codename was selected, and returns if the Location contained the current team's Agent [10 points]
-
+Method which does this : guessCheck [Located in Board class]
+jUnit test for this : CorrectGuessCheckandUpdateTestRed, CorrectGuessCheckandUpdateTestBlue, IncorrectGuessCheckandUpdateTest
 
 Method defined which correctly returns whether or not the Board is in one of the winning states [15 points]
-
+Method which does this : winningState [Located in Board class]
+jUnit test for this : winningStateTestNoWin, winningStateTestAssassin, winningStateTestBlue, winningStateTestRed
 
 Method defined which correctly returns which team did not lose (i.e., win) when the Assassin was revealed [10 points]
-
-
-JavaDocs[2 points]
-
+Method which does this : assassinWin [Located in Board class]
+jUnit test for this : assassWinTest
 
