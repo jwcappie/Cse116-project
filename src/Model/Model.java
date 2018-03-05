@@ -134,9 +134,7 @@ public class Model {
 	 */
 	public boolean checkClue(String clue) {
 		for (Location person : this.currentBoard.getLocations()) {
-			if (person.isRevealed()) {
-				return true;
-			} else if (clue.equals(person.getCodeName())) {
+			if (clue.equals(person.getCodeName()) && !(person.isRevealed())) {
 				return false;
 			}
 		}
