@@ -3,15 +3,29 @@ package Model;
 import java.util.ArrayList;
 
 public class Board {
-
+/**
+ * Arraylist containing all 25 location spots
+ */
 	private ArrayList<Location> Locations = new ArrayList<>();
+
 	private int count = 0;
-	private boolean blueTurn = false;
-	
+/**
+ * Integer equal to the current round number
+ */
 	private int round;
 	
-	private boolean redTurn = true;
+/**
+ * Boolean which returns true if it is red team's turn.
+ */
+	private boolean redTurn;
+/** 
+ * Boolean which returns true if it is blue team's turn.
+ */
+	private boolean blueTurn;
 	
+/**
+ * String equal to the winning team, either blue or red.	
+ */
 	private String winner;
 
 	public Board() {
