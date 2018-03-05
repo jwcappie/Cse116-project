@@ -17,11 +17,11 @@ public class Board {
 /**
  * Boolean which returns true if it is red team's turn.
  */
-	private boolean redTurn;
+	private boolean redTurn = true;
 /** 
  * Boolean which returns true if it is blue team's turn.
  */
-	private boolean blueTurn;
+	private boolean blueTurn = false;
 	
 /**
  * String equal to the winning team, either blue or red.	
