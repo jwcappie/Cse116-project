@@ -19,8 +19,9 @@ public class ProjectTest {
 	 */
 	@Test
 	public void LocationListTest() {
-		Board test = new Board();
-		Location test2 = new Location();
+		Model x = new Model("GameWords.txt");
+		Board test = x.getCurrentBoard();
+		Location test2 = test.getLocations().get(3);
 		ArrayList<Location> m = test.getLocations();
 		int tooManyLocations = 0;
 		int tooLittleLocations = 0;
@@ -32,9 +33,9 @@ public class ProjectTest {
 		assertEquals("There are more than 25 locations", 0, tooManyLocations);
 		assertEquals("There are less than 25 locations", 0, tooLittleLocations);
 
-		assertFalse(test2.getCodeName() == null);
+		assertTrue(!(test2.getCodeName() == null));
 		assertTrue(test2.getCodeName() != "");
-		assertFalse(test2.getPerson() == null);
+		assertTrue(!(test2.getPerson() == null));
 		assertFalse(test2.isRevealed());
 
 	}
