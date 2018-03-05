@@ -32,21 +32,14 @@ public class ProjectTest {
 		assertEquals("There are more than 25 locations", 0, tooManyLocations);
 		assertEquals("There are less than 25 locations", 0, tooLittleLocations);
 
-		// Is Red team the first player?
-		test.whosTurn(0);
-		assertTrue("Red is not the first team to start", test.getRedTurn());
-
-		assertfalse(test2.getCodeName() == null);
+		assertFalse(test2.getCodeName() == null);
 		assertTrue(test2.getCodeName() != "");
-		assertfalse(test2.getPerson() == null);
+		assertFalse(test2.getPerson() == null);
 		assertFalse(test2.isRevealed());
 
 	}
 
-	private void assertfalse(boolean b) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	/**
 	 * Correctly reads codenames from a file named GameWords.txt and stores them in
