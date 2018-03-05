@@ -17,11 +17,11 @@ public class Board {
 /**
  * Boolean which returns true if it is red team's turn.
  */
-	private boolean redTurn = true;
+	private boolean redTurn;
 /** 
  * Boolean which returns true if it is blue team's turn.
  */
-	private boolean blueTurn = false;
+	private boolean blueTurn;
 	
 /**
  * String equal to the winning team, either blue or red.	
@@ -133,9 +133,8 @@ public class Board {
 	   If redTurn is true than it is red's turn, if blueTurn is true than it is Blue's turn
 	 * @param r - the current round number
 	 *  **/
-	public void whosTurn (int r) {
-		round = r;
-			if (r % 2 == 0) {
+	public void whosTurn () {
+			if (round % 2 == 0) {
 				redTurn = true;
 				blueTurn = false;
 			}
@@ -150,9 +149,8 @@ public class Board {
 	 * @param r - the round number
 	 * @return winner - String containing the name of the team that has won due to the other team revealing the assassin
 	 */
-	public String assassinWin (int r) {
-		round = r;
-		whosTurn(round);
+	public String assassinWin () {
+		whosTurn();
 		
 		for (Location assassinLocate : Locations) {
 			if (assassinLocate.getPerson().isAssassin() == true) {

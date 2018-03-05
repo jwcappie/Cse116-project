@@ -34,7 +34,7 @@ public class Model {
 		CreatePersonList();
 		currentBoard.setBoard(personList, names);
 		this.currentBoard = currentBoard;
-
+		this.currentBoard.whosTurn();
 	}
 
 	/**

@@ -421,12 +421,11 @@ public class ProjectTest {
 	public void WhosTurnTest() {
 		Model test = new Model("GameWords.txt");
 		Board testBoard = test.getCurrentBoard();
-		testBoard.whosTurn(0);
-		boolean test0 = testBoard.getRedTurn();
-		testBoard.whosTurn(1);
-		boolean test1 = testBoard.getRedTurn();
-		assertEquals("It is an even number turn so it should be Red's turn", test0, true);
-		assertEquals("It is an odd number turn so it should not be Red's turn", test1, false);
+		testBoard.whosTurn();
+		assertTrue("It is an even number turn so it should be Red's turn", testBoard.getRedTurn());
+		testBoard.setRound(1);;
+		testBoard.whosTurn();
+		assertTrue("It is an odd number turn so it should not be Red's turn", testBoard.isBlueTurn());
 
 	}
 	
@@ -446,8 +445,9 @@ public class ProjectTest {
 			}
 		}
 
-		assertEquals("It was Red's turn, so Blue was meant to win", testBoard.assassinWin(0), "Blue");
-		assertEquals("It was Blue's turn, so Red was meant to win", testBoard.assassinWin(1), "Red");
+		assertEquals("It was Red's turn, so Blue was meant to win", testBoard.assassinWin(), "Blue");
+		testBoard.setRound(1);
+		assertEquals("It was Blue's turn, so Red was meant to win", testBoard.assassinWin(), "Red");
 
 	}
 
