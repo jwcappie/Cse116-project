@@ -12,7 +12,7 @@ public class Board {
 /**
  * Integer equal to the current round number
  */
-	private int round;
+	private int round = 0;
 	
 /**
  * Boolean which returns true if it is red team's turn.
