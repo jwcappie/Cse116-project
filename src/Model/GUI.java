@@ -41,7 +41,7 @@ public class GUI {
 
 	}
 
-	/* Called to update GUI when it is the SpyMasters Turn */
+	/** Called to update GUI when it is the SpyMasters Turn **/
 	public void updateSpyMaster() {
 		_mainPanel.removeAll();
 		_mainPanel.setLayout(new BoxLayout(_mainPanel, BoxLayout.PAGE_AXIS));
