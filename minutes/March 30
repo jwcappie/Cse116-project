@@ -1,0 +1,29 @@
+Meeting Minutes for March 30th:
+
+Meeting Attendance:
+	1. Justin Cappiello
+	2. Robert Straub [M]
+	3. Abdullah Abaddi
+	4. Aritra Paul
+	
+Tasks Completed Since Last Meeting:
+	1. Build path for the GUI has been improved on by Justin.
+	2. Comments have been added for the GUI.
+	
+Tasks Worked Upon but not Completed:
+	1. Methods have started to be divided by the group, check google doc to see.
+		- Google doc also includes a table showing the panels and what each panel should contain, added by Justin.
+	2. Comments on GUI are more descriptive and easier to follow.
+	3. Ideas for the GUI:
+		- Aritra suggests adding a GUI on top of the existing GUI when it is not the spymaster's turn.
+		  this would work by when the guesser hits an 'ok' button to complete their guess the board
+		  switches back to the one with all the colors representing 'red', 'blue', 'bystander', 'assassin'.
+
+Goals for Next Meeting:
+	1. Divide up remaining methods needed for the GUI amongst group.
+	2. Complete all methods needed to allow the spymaster's turn to be completed.
+	3. Be able to move to the other player on the team's turn.
+	4. Begin to implement action-listeners.
+	
+Scheduled Next Meeting(s):
+	1. Sometime next week
