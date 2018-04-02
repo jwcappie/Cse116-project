@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 
 public class GUI {
@@ -47,6 +48,7 @@ public class GUI {
 		_mainPanel.setLayout(new BoxLayout(_mainPanel, BoxLayout.PAGE_AXIS));
 		menuPanel();
 		gamePanel(true);
+		infoPanel(true);
 
 	}
 
@@ -55,6 +57,7 @@ public class GUI {
 		_mainPanel.setLayout(new BoxLayout(_mainPanel, BoxLayout.PAGE_AXIS));
 		menuPanel();
 		gamePanel(false);
+		infoPanel(false);
 
 	}
 
@@ -133,6 +136,34 @@ public class GUI {
 		_menuPanel.add(dropdown);
 		_mainPanel.add(_menuPanel);
 
+	}
+	
+	/*method called to update infopanel given whether it is the spymasters turn or not
+	 * 
+	 */
+	
+	private void infoPanel(boolean SpyMasterTurn) {
+		_infoPanel = new JPanel();
+		_infoPanel.setLayout(new BoxLayout(_infoPanel, BoxLayout.X_AXIS));
+		JTextField txtField = new JTextField();
+			_infoPanel.add(txtField);
+		JButton submit = new JButton("Submit");
+			setButtonProperties(submit);
+			_infoPanel.add(submit);
+			submit.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (_model.checkClue(txtField.getText())) {
+						_model.setClue(txtField.getText());
+						
+					} else{
+						
+					}
+				}
+			});
+		
+		
+		_mainPanel.add(_infoPanel);
 	}
 	
 	/*Method defined to set properties for a given JButton*/
