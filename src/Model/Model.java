@@ -134,7 +134,7 @@ public class Model {
 	 */
 	public boolean checkClue(String clue) {
 		for (Location person : this.currentBoard.getLocations()) {
-			if (clue.equals(person.getCodeName()) && !(person.isRevealed())) {
+			if (clue.toLowerCase().equals(person.getCodeName().toLowerCase()) && !(person.isRevealed())) {
 				return false;
 			}
 		}
@@ -173,6 +173,10 @@ public class Model {
 
 	public void setClue(String c) {
 		clue = c;
+	}
+
+	public String getClue() {
+		return clue;
 	}
 
 }
