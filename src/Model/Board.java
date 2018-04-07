@@ -89,10 +89,11 @@ public class Board {
 	 * @return 
 	 */
 
-	public boolean winningState(ArrayList<Location> LocationTemp)
+	public boolean winningState()
 	{
 		int redCount = 0;
 		int blueCount = 0;
+		ArrayList<Location> LocationTemp = Locations;
 		
 		for(Location check: LocationTemp)
 		{

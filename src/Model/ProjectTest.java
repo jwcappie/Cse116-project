@@ -32,7 +32,7 @@ public class ProjectTest {
 		}
 		assertEquals("There are more than 25 locations", 0, tooManyLocations);
 		assertEquals("There are less than 25 locations", 0, tooLittleLocations);
-		
+
 		assertTrue(test2.getCodeName() != "");
 		assertTrue(!(test2.getPerson() == null));
 		assertFalse(test2.isRevealed());
@@ -197,7 +197,7 @@ public class ProjectTest {
 		ArrayList<Location> loc = temp.getLocations();
 		Location person = loc.get(3);
 		assertTrue(temp.getRedTurn());
-		
+
 		assertFalse(person.isRevealed());
 		assertTrue(!(person.getCodeName() == null));
 		assertTrue(!(person.getPerson() == null));
@@ -227,11 +227,12 @@ public class ProjectTest {
 	 * Location's codename was selected, and returns if the Location contained the
 	 * current team's Agent
 	 */
-	
-	/* Checks if guessCheck method correctly returns true when it is blues turn and
-	 a blue agent is chosen. 
-	 also checks if the count is correct and the Location is set as revealed
-	*/
+
+	/*
+	 * Checks if guessCheck method correctly returns true when it is blues turn and
+	 * a blue agent is chosen. also checks if the count is correct and the Location
+	 * is set as revealed
+	 */
 
 	@Test
 	public void CorrectGuessCheckandUpdateTestBlue() {
@@ -253,11 +254,12 @@ public class ProjectTest {
 		}
 
 	}
-	
-	/* Checks if guessCheck method correctly returns true when it is reds turn and
-	 a red agent is chosen. 
-	 also checks if the count is correct and the Location is set as revealed
-	*/
+
+	/*
+	 * Checks if guessCheck method correctly returns true when it is reds turn and a
+	 * red agent is chosen. also checks if the count is correct and the Location is
+	 * set as revealed
+	 */
 
 	@Test
 	public void CorrectGuessCheckandUpdateTestRed() {
@@ -280,12 +282,12 @@ public class ProjectTest {
 
 	}
 
-	/* Checks if guessCheck method correctly returns false when it is blues turn and
-	 either a red agent, bystander, or Assassin is chosen
-	  also checks if the count is correct and the Location is set as revealed
-	*/
-	
-	
+	/*
+	 * Checks if guessCheck method correctly returns false when it is blues turn and
+	 * either a red agent, bystander, or Assassin is chosen also checks if the count
+	 * is correct and the Location is set as revealed
+	 */
+
 	public void IncorrectGuessCheckandUpdateTest() {
 
 		Model y = new Model("GameWords.txt");
@@ -324,7 +326,7 @@ public class ProjectTest {
 		Board x = y.getCurrentBoard();
 
 		ArrayList<Location> tempList = new ArrayList<>();
-		
+
 		for (Location temp : x.getLocations()) {
 
 			if (temp.getPerson().isRed() == true) {
@@ -335,9 +337,10 @@ public class ProjectTest {
 		}
 
 		Collections.shuffle(tempList);
-		
-		
-		assertTrue(x.winningState(tempList));
+
+		x.setLocations(tempList);
+
+		assertTrue(x.winningState());
 
 	}
 
@@ -361,7 +364,9 @@ public class ProjectTest {
 
 		Collections.shuffle(tempList);
 
-		assertTrue(x.winningState(tempList));
+		x.setLocations(tempList);
+
+		assertTrue(x.winningState());
 
 	}
 
@@ -384,9 +389,9 @@ public class ProjectTest {
 		}
 
 		Collections.shuffle(tempList);
-		
+		x.setLocations(tempList);
 
-		assertTrue(x.winningState(tempList));
+		assertTrue(x.winningState());
 
 	}
 
@@ -410,12 +415,14 @@ public class ProjectTest {
 
 		Collections.shuffle(tempList);
 
+		x.setLocations(tempList);
 
-		assertFalse(x.winningState(tempList));
+		assertFalse(x.winningState());
 	}
 
 	/**
-	 * Method correctly returns which team's turn it is when a round number is called
+	 * Method correctly returns which team's turn it is when a round number is
+	 * called
 	 */
 	@Test
 	public void WhosTurnTest() {
@@ -423,12 +430,13 @@ public class ProjectTest {
 		Board testBoard = test.getCurrentBoard();
 		testBoard.whosTurn();
 		assertTrue("It is an even number turn so it should be Red's turn", testBoard.getRedTurn());
-		testBoard.setRound(1);;
+		testBoard.setRound(1);
+		;
 		testBoard.whosTurn();
 		assertTrue("It is an odd number turn so it should not be Red's turn", testBoard.isBlueTurn());
 
 	}
-	
+
 	/**
 	 * Method defined which correctly returns which team did not lose (i.e., win) //
 	 * when the Assassin was revealed

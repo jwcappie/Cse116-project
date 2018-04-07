@@ -79,13 +79,13 @@ public class GUI {
 
 				if (tempLoc.isRevealed() == true) {
 					JLabel revealed = new JLabel(tempLoc.getPerson().getPersonType());
-					setLabelProperties(revealed, tempLoc.getPerson().getPersonType());
+					setLabelProperties(revealed, tempLoc.getPerson().getPersonType(),true);
 					_gamePanel.add(revealed);
 
 				} else {
 					JLabel notrevealed = new JLabel(
 							tempLoc.getCodeName() + " : " + tempLoc.getPerson().getPersonType());
-					setLabelProperties(notrevealed, tempLoc.getPerson().getPersonType());
+					setLabelProperties(notrevealed, tempLoc.getPerson().getPersonType(),false);
 					_gamePanel.add(notrevealed);
 				}
 
@@ -95,7 +95,7 @@ public class GUI {
 
 				if (tempLoc.isRevealed() == true) {
 					JLabel revealed = new JLabel(tempLoc.getPerson().getPersonType());
-					setLabelProperties(revealed, tempLoc.getPerson().getPersonType());
+					setLabelProperties(revealed, tempLoc.getPerson().getPersonType(), true);
 					_gamePanel.add(revealed);
 
 				} else {
@@ -105,7 +105,7 @@ public class GUI {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 
-							guessCheck(tempLoc.getCodeName());
+							guessCheck(tempLoc);
 
 						}
 					});
@@ -159,6 +159,9 @@ public class GUI {
 		_mainPanel.add(_menuPanel);
 
 	}
+	
+	
+
 
 	/*
 	 * method called to update infopanel given whether it is the spymasters turn or
@@ -185,21 +188,46 @@ public class GUI {
 	}
 
 	// when a location is clicked, checks if guess is correct and updates
-	// accordingly
+	// accordingly also checks if in winning state
 
-	public void guessCheck(String guess) {
-		boolean correct = _board.guessCheck(guess);
-
+	public void guessCheck(Location guess) {
+		boolean correct = _board.guessCheck(guess.getCodeName());
+		boolean winningState = _board.winningState();
+		if (winningState == true)
+		{
+			winningUpdate(guess);
+		}
+		else
+		{
 		if (correct == true) {
 			updateTeam();
 		} else {
 			if (_board.isBlueTurn() == false) {
 				_board.setBlueTurn(true);
+				updateSpyMaster();
 			} else {
 				_board.setBlueTurn(false);
+				updateSpyMaster();
 			}
 		}
 
+	}
+	}
+	
+	//Method called when the game is in a winnning State
+	
+	public void winningUpdate(Location guess) {
+		
+		if (guess.getPerson().isAssassin() == true)
+		{
+			
+		}
+		else
+		{
+			
+		}
+		
+		
 	}
 	/*
 	 * Method Which displays the current count and clue for the team
@@ -313,8 +341,11 @@ public class GUI {
 	}
 
 	/* Method defined to set properties for a given JLabel */
-	public void setLabelProperties(JLabel label, String type) {
-
+	public void setLabelProperties(JLabel label, String type, boolean revealed) {
+		
+		if (revealed == false) {
+		label.setForeground(Color.BLACK);
+		
 		if (type.toLowerCase().equals("red")) {
 			label.setBackground(Color.RED);
 		} else if (type.toLowerCase().equals("blue")) {
@@ -324,10 +355,24 @@ public class GUI {
 		} else if (type.toLowerCase().equals("assassin")) {
 			label.setBackground(Color.GREEN);
 		}
+		}
+		else
+		{
+			label.setBackground(Color.GRAY);
+			if (type.toLowerCase().equals("red")) {
+				label.setForeground(Color.RED);
+			} else if (type.toLowerCase().equals("blue")) {
+				label.setForeground(Color.BLUE);
+			} else if (type.toLowerCase().equals("innocent")) {
+				label.setForeground(Color.MAGENTA);
+			} else if (type.toLowerCase().equals("assassin")) {
+				label.setForeground(Color.GREEN);
+			}
+		}
 
 		label.setFont(new Font("Courier", Font.BOLD, 15));
 
-		label.setForeground(Color.BLACK);
+		
 		label.setOpaque(true);
 		label.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.DARK_GRAY, Color.LIGHT_GRAY));
 	}
