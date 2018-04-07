@@ -206,9 +206,9 @@ public class GUI {
 	 */
 	public void CountandClueTeam() {
 		
-		JLabel _Clue = new JLabel("Clue:" + _model.getClue());
-		JLabel _space = new JLabel("      ");
-		JLabel _Count = new JLabel("Count" + _board.getCount());
+		JLabel _Clue = new JLabel("Clue: " + _model.getClue());
+		JLabel _space = new JLabel("              ");
+		JLabel _Count = new JLabel("Count: " + _board.getCount());
 		_infoPanel.add(_Clue);
 		setLabelPropertiesOther(_Clue);
 		_infoPanel.add(_space);
