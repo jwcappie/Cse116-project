@@ -79,13 +79,13 @@ public class GUI {
 
 				if (tempLoc.isRevealed() == true) {
 					JLabel revealed = new JLabel(tempLoc.getPerson().getPersonType());
-					setLabelProperties(revealed, tempLoc.getPerson().getPersonType(),true);
+					setLabelProperties(revealed, tempLoc.getPerson().getPersonType(), true);
 					_gamePanel.add(revealed);
 
 				} else {
 					JLabel notrevealed = new JLabel(
 							tempLoc.getCodeName() + " : " + tempLoc.getPerson().getPersonType());
-					setLabelProperties(notrevealed, tempLoc.getPerson().getPersonType(),false);
+					setLabelProperties(notrevealed, tempLoc.getPerson().getPersonType(), false);
 					_gamePanel.add(notrevealed);
 				}
 
@@ -159,9 +159,6 @@ public class GUI {
 		_mainPanel.add(_menuPanel);
 
 	}
-	
-	
-
 
 	/*
 	 * method called to update infopanel given whether it is the spymasters turn or
@@ -175,12 +172,10 @@ public class GUI {
 		_infoPanel.setLayout(new BoxLayout(_infoPanel, BoxLayout.X_AXIS));
 
 		if (SpyMasterTurn == true) {
-			
+
 			CountandClueSpyMaster();
 
-		}
-		else
-		{
+		} else {
 			CountandClueTeam();
 		}
 
@@ -204,36 +199,70 @@ public class GUI {
 		} else {
 			if (_board.isBlueTurn() == false) {
 				_board.setBlueTurn(true);
-				updateSpyMaster();
+				switchTurns(true);
+				//updateSpyMaster();
 			} else {
 				_board.setBlueTurn(false);
-				updateSpyMaster();
+				switchTurns(true);
+				//updateSpyMaster();
 			}
 		}
 
 	}
 	}
 	
-	//Method called when the game is in a winnning State
 	
-	public void winningUpdate(Location guess) {
+	//code called to give display w/ whose turn it will be next and updates when ok is clicked
+	public void switchTurns(boolean switchToSpyMaster) {
+		JFrame _switch = new JFrame("Switch turns");
+
+		JPanel _switchPanel = new JPanel();
+		_switch.getContentPane().add(_switchPanel);
+		_switchPanel.setLayout(new BoxLayout(_switchPanel, BoxLayout.Y_AXIS));
 		
-		if (guess.getPerson().isAssassin() == true)
-		{
-			
-		}
-		else
-		{
-			
-		}
-		
-		
+		JLabel _turnTxtPanel = new JLabel();
+		//code to set text indicating correct team/spymater turn
+		setLabelPropertiesOther(_turnTxtPanel);
+		_turnTxtPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+		JButton _close = new JButton("OK!");
+		setButtonProperties(_close);
+		_close.setAlignmentX(Component.CENTER_ALIGNMENT);
+		_close.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				//coode to call correct update
+				_switch.dispose();
+				
+			}
+		});
+		_switch.add(_turnTxtPanel);
+		_switch.add(_close);
+		_switch.pack();
+		_switch.setVisible(true);
+		_switch.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 	}
+
+	// Method called when the game is in a winnning State
+
+	public void winningUpdate(Location guess) {
+
+		if (guess.getPerson().isAssassin() == true) {
+
+		} else {
+
+		}
+
+	}
+
 	/*
 	 * Method Which displays the current count and clue for the team
 	 */
 	public void CountandClueTeam() {
-		
+
 		JLabel _Clue = new JLabel("Clue: " + _model.getClue());
 		JLabel _space = new JLabel("              ");
 		JLabel _Count = new JLabel("Count: " + _board.getCount());
@@ -242,8 +271,7 @@ public class GUI {
 		_infoPanel.add(_space);
 		_infoPanel.add(_Count);
 		setLabelPropertiesOther(_Count);
-	
-	
+
 	}
 
 	/*
@@ -275,10 +303,9 @@ public class GUI {
 						|| badcount == true || count <= 0) {
 
 					txtFieldClue.setText("Clue");
-					
+
 					txtFieldCount.setText("Count");
 					invalidTxt();
-					
 
 				} else {
 					_model.setClue(txtFieldClue.getText());
@@ -287,41 +314,39 @@ public class GUI {
 
 				}
 			}
-			
+
 		});
 
-	
 	}
-	
-	//Method if clue or count is invalid
-	public void invalidTxt()
-	{
+
+	// Method if clue or count is invalid
+	public void invalidTxt() {
 		JFrame _error = new JFrame("Error");
-		
-		JPanel  _errorPanel = new JPanel();
+
+		JPanel _errorPanel = new JPanel();
 		_error.getContentPane().add(_errorPanel);
 		_errorPanel.setLayout(new BoxLayout(_errorPanel, BoxLayout.Y_AXIS));
-		
+
 		JLabel _errorTxtPanel = new JLabel("Please enter a valid clue and count");
 		setLabelPropertiesOther(_errorTxtPanel);
 		_errorTxtPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		
+
 		JButton _close = new JButton("OK!");
 		setButtonProperties(_close);
 		_close.setAlignmentX(Component.CENTER_ALIGNMENT);
 		_close.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				_error.dispose();
 			}
-			});
+		});
 		_errorPanel.add(_errorTxtPanel);
 		_errorPanel.add(_close);
 		_error.pack();
 		_error.setVisible(true);
 		_error.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 	}
 
 	// Repacks driver
@@ -342,22 +367,20 @@ public class GUI {
 
 	/* Method defined to set properties for a given JLabel */
 	public void setLabelProperties(JLabel label, String type, boolean revealed) {
-		
+
 		if (revealed == false) {
-		label.setForeground(Color.BLACK);
-		
-		if (type.toLowerCase().equals("red")) {
-			label.setBackground(Color.RED);
-		} else if (type.toLowerCase().equals("blue")) {
-			label.setBackground(Color.BLUE);
-		} else if (type.toLowerCase().equals("innocent")) {
-			label.setBackground(Color.MAGENTA);
-		} else if (type.toLowerCase().equals("assassin")) {
-			label.setBackground(Color.GREEN);
-		}
-		}
-		else
-		{
+			label.setForeground(Color.BLACK);
+
+			if (type.toLowerCase().equals("red")) {
+				label.setBackground(Color.RED);
+			} else if (type.toLowerCase().equals("blue")) {
+				label.setBackground(Color.BLUE);
+			} else if (type.toLowerCase().equals("innocent")) {
+				label.setBackground(Color.MAGENTA);
+			} else if (type.toLowerCase().equals("assassin")) {
+				label.setBackground(Color.GREEN);
+			}
+		} else {
 			label.setBackground(Color.GRAY);
 			if (type.toLowerCase().equals("red")) {
 				label.setForeground(Color.RED);
@@ -372,7 +395,6 @@ public class GUI {
 
 		label.setFont(new Font("Courier", Font.BOLD, 15));
 
-		
 		label.setOpaque(true);
 		label.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.DARK_GRAY, Color.LIGHT_GRAY));
 	}
@@ -387,6 +409,6 @@ public class GUI {
 
 		label.setForeground(Color.BLACK);
 		label.setOpaque(true);
-		
+
 	}
 }
