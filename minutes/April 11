@@ -1,0 +1,29 @@
+Meeting Minutes for April 11th:
+
+Meeting Attendance:
+	1. Justin Cappiello
+	2. Robert Straub [M]
+	3. Abdullah Abaddi
+	4. Aritra Paul
+	
+Tasks Completed Since Last Meeting:
+	1. Count & clue implemented for the spymaster's turn by Justin
+		- If the clue or count is an illegal value it will return an error message to the user asking to re-input allowed values.
+	2. After the legal values are inputed the turn switches to the other team memeber's turn to select the location.
+	3. Locations are now click-able and turns are now switch-able by Justin
+	
+Tasks Worked Upon but not Completed:
+	1. Need to implement winning methods that will end the game when the game is put into one of the winning states.
+		- Winning states include when one team gets all the right locations, or if the assassin is picked.
+	2. Improve on the way the game switches between team members.
+		- Need to add a buffer of sorts between each team member so the board is not accidentally revealed.
+	3. Count
+		- Once the count reaches 0 the turn should end.
+	
+Goals for Next Meeting:
+	1. Begin to introduce winning states methods into the code.
+	2. Correct the end of turn by count method.
+	3. Add pop-up between spymaster and other team member's turn.
+	
+Scheduled Next Meeting(s):
+	1. Friday 11am
