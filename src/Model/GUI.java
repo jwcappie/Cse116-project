@@ -246,16 +246,51 @@ public class GUI {
 
 	}
 
-	// Method called when the game is in a winnning State
+	/**
+	 * If guessCheck() returns true for winningState, winningUpdate is called to
+	 * end the game by creating a popup displaying which team wins and gives
+	 * the user the option to start a new game or to close out the applicaton.
+	 * 
+	 * This method calls on the board class' getWinner() method to know which team wins,
+	 * winningState() sets winner to: blue if blueCount = 8, red if redCount = 9, or if
+	 * assassin revealed will call assassinWin() to set winner.
+	 * @param guess (The location clicked on by the user)
+	 */
 
 	public void winningUpdate(Location guess) {
-
-		if (guess.getPerson().isAssassin() == true) {
-
-		} else {
-
-		}
-
+		String winner = _board.getWinner();
+		
+		JFrame _gameOver = new JFrame("GAME OVER");
+		JPanel _gameOverPanel = new JPanel();
+		_gameOver.getContentPane().add(_gameOverPanel);
+		_gameOverPanel.setLayout(new BoxLayout(_gameOverPanel, BoxLayout.Y_AXIS));
+		
+		JLabel _winnerTextPanel = new JLabel("The " + winner + " team has won the game!");
+		_winnerTextPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		_winnerTextPanel.setFont(new Font("", Font.BOLD, 30));
+		_gameOverPanel.add(_winnerTextPanel);
+		
+		JButton _playAgain = new JButton ("Play Again!");
+		_playAgain.setAlignmentX(Component.CENTER_ALIGNMENT);
+		_playAgain.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				_windowHolder.newGame();
+				_gameOver.dispose();}});
+		_gameOverPanel.add(_playAgain);
+		
+		JButton _endGame = new JButton ("Exit Game!");
+		_endGame.setAlignmentX(Component.CENTER_ALIGNMENT);
+		_endGame.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				_windowHolder.endGame();
+				_gameOver.dispose();}});
+		_gameOverPanel.add(_endGame);
+		
+		_gameOver.pack();
+		_gameOver.setVisible(true);
+		_gameOver.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	/*
