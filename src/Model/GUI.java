@@ -1,15 +1,19 @@
 package Model;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -17,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
+import javax.swing.border.EmptyBorder;
 
 public class GUI {
 
@@ -32,6 +37,7 @@ public class GUI {
 	private JPanel _infoPanel;
 	private Model _model;
 	private Board _board;
+	private JPanel _graphicPanel;
 
 	public GUI(JPanel _mainPanel, Driver driver, Model _model) {
 
@@ -39,8 +45,10 @@ public class GUI {
 		this._windowHolder = driver;
 		this._model = _model;
 		_board = _model.getCurrentBoard();
+        
 		updateSpyMaster();
 		updateJFrameIfNotHeadless();
+		effects();
 
 	}
 
@@ -83,8 +91,7 @@ public class GUI {
 					_gamePanel.add(revealed);
 
 				} else {
-					JLabel notrevealed = new JLabel(
-							tempLoc.getCodeName() + " : " + tempLoc.getPerson().getPersonType());
+					JLabel notrevealed = new JLabel("<html>"+tempLoc.getCodeName()+"<br>"+tempLoc.getPerson().getPersonType()+"</html>");
 					setLabelProperties(notrevealed, tempLoc.getPerson().getPersonType(), false);
 					_gamePanel.add(notrevealed);
 				}
@@ -200,11 +207,11 @@ public class GUI {
 			if (_board.isBlueTurn() == false) {
 				_board.setBlueTurn(true);
 				switchTurns(true);
-				//updateSpyMaster();
+				updateSpyMaster();
 			} else {
 				_board.setBlueTurn(false);
 				switchTurns(true);
-				//updateSpyMaster();
+				updateSpyMaster();
 			}
 		}
 
@@ -242,7 +249,7 @@ public class GUI {
 		_switch.add(_close);
 		_switch.pack();
 		_switch.setVisible(true);
-		_switch.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		_switch.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 	}
 
@@ -290,7 +297,7 @@ public class GUI {
 		
 		_gameOver.pack();
 		_gameOver.setVisible(true);
-		_gameOver.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		_gameOver.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
 	/*
@@ -380,7 +387,7 @@ public class GUI {
 		_errorPanel.add(_close);
 		_error.pack();
 		_error.setVisible(true);
-		_error.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		_error.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 	}
 
@@ -399,6 +406,29 @@ public class GUI {
 		button.setOpaque(true);
 		button.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.DARK_GRAY, Color.LIGHT_GRAY));
 	}
+	public void effects() {
+		_graphicPanel = new JPanel();
+		_graphicPanel.setPreferredSize(new Dimension(100, 100));
+		_graphicPanel.setLayout(new BoxLayout(_graphicPanel, BoxLayout.X_AXIS));
+		ImageIcon egg = new ImageIcon("Egg.gif");
+		egg.setImage(egg.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+		
+		JLabel icon = new  JLabel(egg);
+		icon.setBorder(new EmptyBorder(0, 30, 0, 0));
+		_graphicPanel.add(icon,BorderLayout.CENTER); 
+		
+		JLabel welcome = new JLabel("Welcome To the new game"); 
+		welcome.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
+		welcome.setBorder(new EmptyBorder(0, 30, 0, 30));
+		_graphicPanel.add(welcome); 
+		
+		JLabel icon2 = new  JLabel(egg);
+		icon2.setBorder(new EmptyBorder(0, 0, 0, 30));
+		_graphicPanel.add(icon2,BorderLayout.CENTER); 
+		_graphicPanel.setPreferredSize(null);
+		_mainPanel.add( _graphicPanel);
+		
+	}
 
 	/* Method defined to set properties for a given JLabel */
 	public void setLabelProperties(JLabel label, String type, boolean revealed) {
@@ -407,11 +437,11 @@ public class GUI {
 			label.setForeground(Color.BLACK);
 
 			if (type.toLowerCase().equals("red")) {
-				label.setBackground(Color.RED);
+				label.setBackground(Color.decode("#F9462B"));
 			} else if (type.toLowerCase().equals("blue")) {
-				label.setBackground(Color.BLUE);
+				label.setBackground(Color.decode("#84D0FB"));
 			} else if (type.toLowerCase().equals("innocent")) {
-				label.setBackground(Color.MAGENTA);
+				label.setBackground(Color.getHSBColor(202, 60, 59 ));
 			} else if (type.toLowerCase().equals("assassin")) {
 				label.setBackground(Color.GREEN);
 			}

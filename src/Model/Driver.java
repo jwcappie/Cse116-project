@@ -3,10 +3,15 @@ package Model;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -56,6 +61,7 @@ public class Driver implements Runnable {
 		_window.getContentPane().add(_mainPanel);
 		firstOpen();
 		_window.pack();
+		_window.setLocationRelativeTo(null);
 		_window.setVisible(true);
 		_window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -91,10 +97,12 @@ public class Driver implements Runnable {
 		_mainPanel.add(_startPanel);
 
 	}
+	
 
 	/* called to update the window, redraws it and fixes window size */
 	public void updateJFrame() {
 		_window.pack();
+		_window.isLocationByPlatform();
 		_window.repaint();
 	}
 }
