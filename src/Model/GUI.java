@@ -35,6 +35,7 @@ public class GUI {
 	private JPanel _menuPanel;
 	private JPanel _gamePanel;
 	private JPanel _infoPanel;
+	private JPanel _displayPanel;
 	private Model _model;
 	private Board _board;
 	private JPanel _graphicPanel;
@@ -203,7 +204,25 @@ public class GUI {
 		else
 		{
 		if (correct == true) {
+			if(_board.getCount() < 0)
+			{
+				if (_board.isBlueTurn() == false) {
+					_board.setBlueTurn(true);
+					_board.setRedTurn(false);
+					switchTurns(true);
+					
+				} else {
+					_board.setBlueTurn(false);
+					_board.setRedTurn(true);
+					switchTurns(true);
+					
+				}
+				
+			}
+			else
+			{
 			updateTeam();
+			}
 		} else {
 			if (_board.isBlueTurn() == false) {
 				_board.setBlueTurn(true);
@@ -280,11 +299,41 @@ public class GUI {
 			}
 		});
 		_switchPanel.add(_turnTxtPanel);
+		
+		displayPanel();
+		_switchPanel.add(_displayPanel);
 		_switchPanel.add(_close);
 		
 		_switchPanel.setVisible(true);
 		updateJFrameIfNotHeadless();
 
+	}
+	
+	
+	
+	//Method to display current state of game
+	public void displayPanel()
+	{
+		
+		_displayPanel = new JPanel();
+		_displayPanel.setLayout(new GridLayout(6, 6));
+
+			for (Location tempLoc : _board.getLocations()) {
+
+				if (tempLoc.isRevealed() == true) {
+					JLabel revealed = new JLabel(tempLoc.getPerson().getPersonType());
+					setLabelProperties(revealed, tempLoc.getPerson().getPersonType(), true);
+					_displayPanel.add(revealed);
+
+				} else {
+					JLabel notrevealed = new JLabel(tempLoc.getCodeName());
+					setLabelPropertiesDisplay(notrevealed);
+					_displayPanel.add(notrevealed);
+				}
+
+			}
+		
+		
 	}
 
 	/**
@@ -509,6 +558,16 @@ public class GUI {
 
 		label.setFont(new Font("Courier", Font.BOLD, 15));
 
+		label.setOpaque(true);
+		label.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.DARK_GRAY, Color.LIGHT_GRAY));
+	}
+	
+	//
+	public void setLabelPropertiesDisplay(JLabel label) {
+
+		label.setFont(new Font("Courier", Font.BOLD, 15));
+		label.setBackground(Color.WHITE);
+		label.setForeground(Color.BLACK);
 		label.setOpaque(true);
 		label.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.DARK_GRAY, Color.LIGHT_GRAY));
 	}
