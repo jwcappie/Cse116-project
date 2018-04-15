@@ -381,6 +381,13 @@ public class GUI {
 		_gameOver.pack();
 		_gameOver.setVisible(true);
 		_gameOver.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		_mainPanel.removeAll();
+		displayPanel();
+		_mainPanel.add(_menuPanel);
+		_mainPanel.add(_displayPanel);
+		updateJFrameIfNotHeadless();
+		
 	}
 
 	/*
