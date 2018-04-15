@@ -65,7 +65,10 @@ public class GUI {
 
 	}
 
-	/* Called to update GUI when it is not the SpyMasters Turn */
+	
+	/**
+	 * Called to update GUI when it is not the SpyMasters Turn 
+	 */
 	public void updateTeam() {
 		_mainPanel.removeAll();
 		_mainPanel.setLayout(new BoxLayout(_mainPanel, BoxLayout.PAGE_AXIS));
@@ -76,7 +79,7 @@ public class GUI {
 
 	}
 
-	/*
+	/**
 	 * Given Whether it is the SpyMasters turn or not: sets up board goes through
 	 * each location and checks whether revealed or not then sets up properties
 	 */
@@ -127,7 +130,7 @@ public class GUI {
 		_mainPanel.add(_gamePanel);
 	}
 
-	/*
+	/**
 	 * Method to Create a drop down at the top of the gui the options are New Game
 	 * and Exit which call corresponding methods is added to the main panel at the
 	 * end of the method so must be called before game and info panel are added
@@ -169,7 +172,7 @@ public class GUI {
 
 	}
 
-	/*
+	/**
 	 * method called to update infopanel given whether it is the spymasters turn or
 	 * not
 	 * 
@@ -191,9 +194,13 @@ public class GUI {
 		_mainPanel.add(_infoPanel);
 	}
 
-	// when a location is clicked, checks if guess is correct and updates
-	// accordingly also checks if in winning state
-
+	/**
+	 * when a location is clicked, checks if guess is correct and updates
+	 * accordingly also checks if in winning state
+	 * 
+	 * @param guess
+	 */
+	
 	public void guessCheck(Location guess) {
 		boolean correct = _board.guessCheck(guess.getCodeName());
 		boolean winningState = _board.winningState();
@@ -241,7 +248,10 @@ public class GUI {
 	}
 	
 	
-	//code called to give display w/ whose turn it will be next and updates when ok is clicked
+	/**code called to give display w/ whose turn it will be next and updates when ok is clicked
+	 * 
+	 * @param switchToSpyMaster
+	 */
 	public void switchTurns(boolean switchToSpyMaster) {
 		_mainPanel.removeAll();
 		
@@ -311,7 +321,10 @@ public class GUI {
 	
 	
 	
-	//Method to display current state of game
+	/**
+	 * Method to display current state of game
+	 * 
+	 */
 	public void displayPanel()
 	{
 		
@@ -390,7 +403,7 @@ public class GUI {
 		
 	}
 
-	/*
+	/**
 	 * Method Which displays the current count and clue for the team
 	 */
 	public void CountandClueTeam() {
@@ -421,7 +434,7 @@ public class GUI {
 
 	}
 
-	/*
+	/**
 	 * Method for adding count and clue text box if spymaster turn trys to read
 	 * count and clue and if count is not a int or is< 0 or clue is invalid sends
 	 * error message
@@ -466,7 +479,10 @@ public class GUI {
 
 	}
 
-	// Method if clue or count is invalid
+
+	/**
+	 * Method if clue or count is invalid
+	 */
 	public void invalidTxt() {
 		JFrame _error = new JFrame("Error");
 
@@ -496,14 +512,21 @@ public class GUI {
 
 	}
 
-	// Repacks driver
+	/**
+	 *  Repacks driver
+	 */
 	public void updateJFrameIfNotHeadless() {
 
 		_windowHolder.updateJFrame();
 
 	}
 
-	/* Method defined to set properties for a given JButton */
+	/**
+	 * Method defined to set properties for a given JButton
+	 * 
+	 * @param button
+	 */
+	
 	public void setButtonProperties(JButton button) {
 		button.setFont(new Font("Courier", Font.BOLD, 15));
 		button.setBackground(Color.WHITE);
@@ -511,6 +534,11 @@ public class GUI {
 		button.setOpaque(true);
 		button.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.DARK_GRAY, Color.LIGHT_GRAY));
 	}
+	
+	/**
+	 * This method places two Gif pictures of easter eggs and a welcome to the new game 
+	 * 
+	 */
 	public void effects() {
 		_graphicPanel = new JPanel();
 		_graphicPanel.setPreferredSize(new Dimension(100, 100));
@@ -535,7 +563,16 @@ public class GUI {
 		
 	}
 
-	/* Method defined to set properties for a given JLabel */
+	/**
+	 * 	 
+	 *  Method defined to set properties for a given JLabels
+	 *  
+	 *  
+	 * @param label
+	 * @param type
+	 * @param revealed
+	 */
+
 	public void setLabelProperties(JLabel label, String type, boolean revealed) {
 
 		if (revealed == false) {
@@ -579,10 +616,13 @@ public class GUI {
 		label.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.DARK_GRAY, Color.LIGHT_GRAY));
 	}
 
-	/*
-	 * Method defined to set properties for a given JLabel, without colored
+	/**
+	 * * Method defined to set properties for a given JLabel, without colored
 	 * background
+	 * 
+	 * @param label
 	 */
+	
 	public void setLabelPropertiesOther(JLabel label) {
 
 		label.setFont(new Font("Courier", Font.BOLD, 20));
