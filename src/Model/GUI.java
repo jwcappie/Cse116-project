@@ -544,7 +544,7 @@ public class GUI {
 	
 	public void easterEgg()
 	{
-		JFrame _hertz = new JFrame("We Can Do It!");
+		JFrame _hertz = new JFrame("Inspirational Message!");
 		JPanel _hertzPanel = new JPanel();
 		ImageIcon hertz = new ImageIcon("hertz.jpg");
 		JLabel icon = new  JLabel(hertz);
