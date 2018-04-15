@@ -200,6 +200,7 @@ public class Board {
 	
 	public void setRedTurn(boolean x) {
 		redTurn = x;
+		blueTurn = !x;
 	}
 
 	public int getCount() {
@@ -216,6 +217,7 @@ public class Board {
 
 	public void setBlueTurn(boolean blueTurn) {
 		this.blueTurn = blueTurn;
+		redTurn = !blueTurn;
 	}
 
 	public String getWinner() {
