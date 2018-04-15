@@ -339,9 +339,24 @@ public class GUI {
 	 */
 	public void CountandClueTeam() {
 
-		JLabel _Clue = new JLabel("Clue: " + _model.getClue());
+		JLabel _Clue = new JLabel("    Clue: " + _model.getClue());
 		JLabel _space = new JLabel("              ");
 		JLabel _Count = new JLabel("Count: " + _board.getCount());
+		JButton _Pass = new JButton("Pass Turn");
+		_Pass.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(_board.isBlueTurn() == true) {
+					_board.setRedTurn(true);
+				} else {
+					_board.setBlueTurn(true);
+				}
+				switchTurns(true);
+			}
+
+		});
+		_infoPanel.add(_Pass);
+		setButtonProperties(_Pass);
 		_infoPanel.add(_Clue);
 		setLabelPropertiesOther(_Clue);
 		_infoPanel.add(_space);
@@ -387,7 +402,6 @@ public class GUI {
 					_model.setClue(txtFieldClue.getText());
 					_board.setCount(count);
 					switchTurns(false);
-					
 
 				}
 			}
@@ -481,7 +495,7 @@ public class GUI {
 				label.setBackground(Color.GREEN);
 			}
 		} else {
-			label.setBackground(Color.GRAY);
+			label.setBackground(Color.WHITE);
 			if (type.toLowerCase().equals("red")) {
 				label.setForeground(Color.RED);
 			} else if (type.toLowerCase().equals("blue")) {
