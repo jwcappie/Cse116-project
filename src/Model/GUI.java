@@ -206,12 +206,14 @@ public class GUI {
 		} else {
 			if (_board.isBlueTurn() == false) {
 				_board.setBlueTurn(true);
+				_board.setRedTurn(false);
 				switchTurns(true);
-				updateSpyMaster();
+				
 			} else {
 				_board.setBlueTurn(false);
+				_board.setRedTurn(true);
 				switchTurns(true);
-				updateSpyMaster();
+				
 			}
 		}
 
@@ -221,13 +223,37 @@ public class GUI {
 	
 	//code called to give display w/ whose turn it will be next and updates when ok is clicked
 	public void switchTurns(boolean switchToSpyMaster) {
-		JFrame _switch = new JFrame("Switch turns");
+		_mainPanel.removeAll();
+		
 
 		JPanel _switchPanel = new JPanel();
-		_switch.getContentPane().add(_switchPanel);
+		_mainPanel.add(_switchPanel);
 		_switchPanel.setLayout(new BoxLayout(_switchPanel, BoxLayout.Y_AXIS));
 		
 		JLabel _turnTxtPanel = new JLabel();
+		
+		if(switchToSpyMaster == true)
+		{
+			if(_board.isBlueTurn() == false)
+			{
+				_turnTxtPanel.setText("It will now be Red spymaster's turn");
+			}
+			else {
+				_turnTxtPanel.setText("It will now be blue spymaster's turn");
+			}
+			
+		}
+		else
+		{
+			if(_board.isBlueTurn()  == false)
+			{
+				_turnTxtPanel.setText("It will now be Red team's turn");
+			}
+			else {
+				_turnTxtPanel.setText("It will now be blue team's turn");
+			}
+			
+		}
 		//code to set text indicating correct team/spymater turn
 		setLabelPropertiesOther(_turnTxtPanel);
 		_turnTxtPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -239,17 +265,24 @@ public class GUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+				if(switchToSpyMaster == true)
+				{
+					updateSpyMaster();
+				}
+				else
+				{
+					updateTeam();
+					
+				}
 				
-				//coode to call correct update
-				_switch.dispose();
 				
 			}
 		});
-		_switch.add(_turnTxtPanel);
-		_switch.add(_close);
-		_switch.pack();
-		_switch.setVisible(true);
-		_switch.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		_switchPanel.add(_turnTxtPanel);
+		_switchPanel.add(_close);
+		
+		_switchPanel.setVisible(true);
+		updateJFrameIfNotHeadless();
 
 	}
 
@@ -352,7 +385,8 @@ public class GUI {
 				} else {
 					_model.setClue(txtFieldClue.getText());
 					_board.setCount(count);
-					updateTeam();
+					switchTurns(false);
+					
 
 				}
 			}
