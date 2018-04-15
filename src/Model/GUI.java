@@ -38,6 +38,7 @@ public class GUI {
 	private Model _model;
 	private Board _board;
 	private JPanel _graphicPanel;
+	private boolean isFirstTurnOfTheGame = true;
 
 	public GUI(JPanel _mainPanel, Driver driver, Model _model) {
 

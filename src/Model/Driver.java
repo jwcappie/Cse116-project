@@ -39,7 +39,8 @@ public class Driver implements Runnable {
 	/* when called creates a new Gui and Model thus starting a new game */
 	public void newGame() {
 		_mainPanel.removeAll();
-		new GUI(_mainPanel, this, new Model("GameWords.txt"));
+		GUI newGui = new GUI(_mainPanel, this, new Model("GameWords.txt"));
+		newGui.switchTurns(true);
 		updateJFrame();
 
 	}
