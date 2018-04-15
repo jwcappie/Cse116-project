@@ -41,6 +41,7 @@ public class Driver implements Runnable {
 		_mainPanel.removeAll();
 		GUI newGui = new GUI(_mainPanel, this, new Model("GameWords.txt"));
 		newGui.switchTurns(true);
+		newGui.effects();
 		updateJFrame();
 
 	}

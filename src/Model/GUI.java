@@ -452,7 +452,7 @@ public class GUI {
 		icon.setBorder(new EmptyBorder(0, 30, 0, 0));
 		_graphicPanel.add(icon,BorderLayout.CENTER); 
 		
-		JLabel welcome = new JLabel("Welcome To the new game"); 
+		JLabel welcome = new JLabel("Welcome To CodeNames!"); 
 		welcome.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
 		welcome.setBorder(new EmptyBorder(0, 30, 0, 30));
 		_graphicPanel.add(welcome); 
