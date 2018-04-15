@@ -467,7 +467,14 @@ public class GUI {
 					txtFieldCount.setText("Count");
 					invalidTxt();
 
-				} else {
+				}
+				else if (txtFieldClue.getText().toLowerCase().equals("pandas"))
+				{
+					easterEgg();
+					
+				}
+					else {
+				
 					_model.setClue(txtFieldClue.getText());
 					_board.setCount(count);
 					switchTurns(false);
@@ -533,6 +540,22 @@ public class GUI {
 		button.setForeground(Color.BLACK);
 		button.setOpaque(true);
 		button.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.DARK_GRAY, Color.LIGHT_GRAY));
+	}
+	
+	public void easterEgg()
+	{
+		JFrame _hertz = new JFrame("We Can Do It!");
+		JPanel _hertzPanel = new JPanel();
+		ImageIcon hertz = new ImageIcon("hertz.jpg");
+		JLabel icon = new  JLabel(hertz);
+		hertz.setImage(hertz.getImage().getScaledInstance(500, 500, Image.SCALE_DEFAULT));
+		
+		_hertz.getContentPane().add(_hertzPanel);
+		_hertzPanel.add(icon);
+		_hertz.pack();
+		_hertz.setLocationRelativeTo(null);
+		_hertz.setVisible(true);
+		
 	}
 	
 	/**
