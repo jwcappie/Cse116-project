@@ -1,12 +1,17 @@
 package Model;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.border.EmptyBorder;
 
 public class Driver implements Runnable {
 
@@ -75,10 +81,23 @@ public class Driver implements Runnable {
 	 * listeners which call methods
 	 */
 	private void firstOpen() {
-
+		
+		JPanel _graphicPanel = new JPanel();
+		_graphicPanel.setPreferredSize(new Dimension(100, 100));
+		_graphicPanel.setLayout(new BoxLayout(_graphicPanel, BoxLayout.X_AXIS));
+		ImageIcon start = new ImageIcon("Start Game.gif");
+		start.setImage(start.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+		
+		JLabel icon = new  JLabel(start);
+		icon.setBorder(new EmptyBorder(0, 30, 0, 0));
+		_graphicPanel.add(icon,BorderLayout.CENTER); 
+		_graphicPanel.setPreferredSize(null);
+		_mainPanel.add( _graphicPanel);
+		
+	
 		JPanel _startPanel = new JPanel();
-		_startPanel.setLayout(new GridLayout(1, 2));
-		JButton _newGame = new JButton("New Game");
+		_startPanel.setLayout(new GridLayout(2, 1));
+		JButton _newGame = new JButton("Start");
 		_newGame.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
