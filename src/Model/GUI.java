@@ -46,7 +46,7 @@ public class GUI {
 		this._windowHolder = driver;
 		this._model = _model;
 		_board = _model.getCurrentBoard();
-        
+
 		updateSpyMaster();
 		updateJFrameIfNotHeadless();
 		effects();
@@ -81,7 +81,7 @@ public class GUI {
 	 */
 	private void gamePanel(boolean SpyMasterTurn) {
 		_gamePanel = new JPanel();
-		_gamePanel.setLayout(new GridLayout(5, 5));
+		_gamePanel.setLayout(new GridLayout(6, 6));
 
 		if (SpyMasterTurn == true) {
 			for (Location tempLoc : _board.getLocations()) {
@@ -486,7 +486,7 @@ public class GUI {
 			label.setForeground(Color.BLACK);
 
 			if (type.toLowerCase().equals("red")) {
-				label.setBackground(Color.decode("#F9462B"));
+				label.setBackground(Color.decode("#ff354d"));
 			} else if (type.toLowerCase().equals("blue")) {
 				label.setBackground(Color.decode("#84D0FB"));
 			} else if (type.toLowerCase().equals("innocent")) {
