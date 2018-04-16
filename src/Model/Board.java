@@ -154,8 +154,6 @@ public class Board {
 	 * @return winner - String containing the name of the team that has won due to the other team revealing the assassin
 	 */
 	public String assassinWin () {
-		whosTurn();
-		
 		for (Location assassinLocate : Locations) {
 			if (assassinLocate.getPerson().isAssassin() == true) {
 				if (blueTurn == true && assassinLocate.isRevealed() == true) {

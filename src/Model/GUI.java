@@ -51,7 +51,7 @@ public class GUI {
 		updateSpyMaster();
 		updateJFrameIfNotHeadless();
 		effects();
-
+		eggPic();
 	}
 
 	/** Called to update GUI when it is the SpyMasters Turn **/
@@ -62,7 +62,7 @@ public class GUI {
 		gamePanel(true);
 		infoPanel(true);
 		updateJFrameIfNotHeadless();
-
+		eggPic();
 	}
 
 	
@@ -76,7 +76,7 @@ public class GUI {
 		gamePanel(false);
 		infoPanel(false);
 		updateJFrameIfNotHeadless();
-
+		eggPic();
 	}
 
 	/**
@@ -128,6 +128,7 @@ public class GUI {
 		}
 
 		_mainPanel.add(_gamePanel);
+		
 	}
 
 	/**
@@ -169,7 +170,7 @@ public class GUI {
 		_menuPanel.add(dropdown);
 		_menuPanel.add(turn);
 		_mainPanel.add(_menuPanel);
-
+		
 	}
 
 	/**
@@ -558,6 +559,37 @@ public class GUI {
 		
 	}
 	
+	public void eggPic()
+	{
+		
+		
+		JPanel eggPic = new JPanel();
+		eggPic.setPreferredSize(new Dimension(100, 100));
+		eggPic.setLayout(new BoxLayout(eggPic, BoxLayout.X_AXIS));
+		
+		
+		ImageIcon egg2 = new ImageIcon("Egg2.png");
+		egg2.setImage(egg2.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+		JLabel icon = new  JLabel(egg2);
+		icon.setBorder(new EmptyBorder(0, 30, 0, 0));
+		eggPic.add(icon,BorderLayout.CENTER); 
+		
+		
+		ImageIcon egg3 = new ImageIcon("Egg3.jpg");
+		egg3.setImage(egg3.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+		JLabel icon2 = new  JLabel(egg3);
+		icon2.setBorder(new EmptyBorder(0, 30, 0, 30));
+		eggPic.add(icon2,BorderLayout.CENTER); 
+		
+		
+		
+		JLabel icon3 = new  JLabel(egg2);
+		icon.setBorder(new EmptyBorder(0, 0, 0, 30));
+		eggPic.add(icon3,BorderLayout.CENTER);
+		eggPic.setPreferredSize(null);
+		_mainPanel.add(eggPic);
+		
+	}
 	/**
 	 * This method places two Gif pictures of easter eggs and a welcome to the new game 
 	 * 
@@ -588,8 +620,7 @@ public class GUI {
 
 	/**
 	 * 	 
-	 *  Method defined to set properties for a given JLabels
-	 *  
+	 *  Method defined to set properties for a given JLabel
 	 *  
 	 * @param label
 	 * @param type
