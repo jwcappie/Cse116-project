@@ -4,6 +4,7 @@ public class Person {
 	
 	private String personType;
 	private boolean red= false;
+	private boolean green= false;
 	private boolean blue = false;
 	private boolean assassin = false;
 	private boolean bystander = false;
@@ -33,6 +34,12 @@ public class Person {
 		red = true;
 	}
 	
+	/**
+	 * This method assigns the field green to true	
+	 */
+	public void setGreen() {
+		green = true;
+	}
 	
 	
 
@@ -48,6 +55,13 @@ public class Person {
 	 */
 	public void setBlue() {
 		blue = true;
+	}
+	
+	/**
+	 * This method assigns the field blue to true	
+	 */
+	public boolean isGreen() {
+		return green;
 	}
 	
 	

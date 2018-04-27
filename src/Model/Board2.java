@@ -33,7 +33,7 @@ public class Board2 {
  */
 	private String winner;
 
-	public Board() {
+	public Board2() {
 
 		/** Creates 25 instances of Location and Stores in a ArrayList
 		 * 
@@ -169,7 +169,7 @@ public class Board2 {
 //				redTurn = false;
 //				blueTurn = true;
 //			}
-		}
+//		}
 
 	/** 
 	 * If the Assassin is revealed then it will return who the winner is
