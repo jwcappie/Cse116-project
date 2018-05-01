@@ -497,6 +497,7 @@ public class GUI2 {
 		JButton submit = new JButton("Submit");
 		setButtonProperties(submit);
 		_infoPanel.add(submit);
+		_board.winningState();
 		submit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -510,24 +511,18 @@ public class GUI2 {
 
 				if (_model.checkClue(txtFieldClue.getText()) == false || txtFieldClue.getText() == ""
 						|| badcount == true || count <= 0 || count > 6) {
-
-					txtFieldClue.setText("Clue");
-
-					txtFieldCount.setText("Count");
-					invalidTxt();
-
+						txtFieldClue.setText("Clue");
+						txtFieldCount.setText("Count");
+						invalidTxt();
 				}
-				else if (txtFieldClue.getText().toLowerCase().equals("pandas"))
-				{
+				else if (txtFieldClue.getText().toLowerCase().equals("pandas")) {
 					easterEgg();
 					
 				}
-					else {
-				
-					_model.setClue(txtFieldClue.getText());
-					_board.setCount(count);
-					switchTurns(false);
-
+				else {
+				_model.setClue(txtFieldClue.getText());
+				_board.setCount(count);
+				switchTurns(false);
 				}
 			}
 

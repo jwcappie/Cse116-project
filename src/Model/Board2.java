@@ -128,15 +128,15 @@ public class Board2 {
 			}
 		}
 		
-		if (redCount == 6) {
+		if (redCount == 6 && redLost == false) {
 			winner = "Red";
 			return true;
 		}
-		else if (blueCount == 5) {
+		else if (blueCount == 5 && blueLost == false) {
 			winner = "Blue";
 			return true;
 		}
-		else if (greenCount == 5) {
+		else if (greenCount == 5 && greenLost == false) {
 			winner = "Green";
 			return true;
 		}
