@@ -23,7 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 
-public class GUI {
+public class GUI2 {
 
 	/*
 	 * main panel is the base for the three main panels menu: option to quit or
@@ -36,12 +36,12 @@ public class GUI {
 	private JPanel _gamePanel;
 	private JPanel _infoPanel;
 	private JPanel _displayPanel;
-	private Model _model;
-	private Board _board;
+	private Model2 _model;
+	private Board2 _board;
 	private JPanel _graphicPanel;
 	private boolean isFirstTurnOfTheGame = true;
 
-	public GUI(JPanel _mainPanel, Driver driver, Model _model) {
+	public GUI2(JPanel _mainPanel, Driver driver, Model2 _model) {
 
 		this._mainPanel = _mainPanel;
 		this._windowHolder = driver;
@@ -151,7 +151,7 @@ public class GUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (dropdown.getSelectedIndex() == 1) {
-					_windowHolder.newGameTwo();
+					_windowHolder.newGameThree();
 				} else if (dropdown.getSelectedIndex() == 2) {
 					_windowHolder.endGame();
 				}
@@ -161,8 +161,11 @@ public class GUI {
 		setLabelPropertiesOther(turn);
 		if (_board.isBlueTurn() == true) {
 			turn.setText("Blue Turn");
-
-		} else {
+		} 
+		else if (_board.isGreenTurn()){
+			turn.setText("Green Turn");
+		}
+		else {
 			turn.setText("Red Turn");
 		}
 
@@ -174,7 +177,7 @@ public class GUI {
 	}
 
 	/**
-	 * method called to update infopanel given whether it is the spymasters turn or
+	 * method called to update info panel given whether it is the spymasters turn or
 	 * not
 	 * 
 	 */
@@ -211,41 +214,70 @@ public class GUI {
 		}
 		else
 		{
-		if (correct == true) {
-			if(_board.getCount() < 0)
-			{
-				if (_board.isBlueTurn() == false) {
-					_board.setBlueTurn(true);
-					_board.setRedTurn(false);
+		if (correct) {
+			if(_board.getCount() < 0) {
+				if (_board.isBlueTurn()) {
+					if (_board.isGreenLost()) {
+						_board.setRedTurn();
+					}
+					else {
+						_board.setGreenTurn();
+					}
 					switchTurns(true);
-					
-				} else {
-					_board.setBlueTurn(false);
-					_board.setRedTurn(true);
+				} 
+				else if (_board.isGreenTurn()){
+					if (_board.isRedLost()) {
+						_board.setBlueTurn();
+					}
+					else {
+						_board.setRedTurn();
+					}
 					switchTurns(true);
-					
 				}
-				
+				else {
+					if (_board.isBlueLost()) {
+						_board.setGreenTurn();
+					}
+					else {
+						_board.setBlueTurn();
+					}
+					switchTurns(true);
+				}
 			}
-			else
-			{
+			else {
 			updateTeam();
 			}
-		} else {
-			if (_board.isBlueTurn() == false) {
-				_board.setBlueTurn(true);
-				_board.setRedTurn(false);
+		} 
+		else {
+			if (_board.isBlueTurn()) {
+				if (_board.isGreenLost()) {
+					_board.setRedTurn();
+				}
+				else {
+					_board.setGreenTurn();
+				}
 				switchTurns(true);
-				
-			} else {
-				_board.setBlueTurn(false);
-				_board.setRedTurn(true);
+			} 
+			else if (_board.isGreenTurn()){
+				if (_board.isRedLost()) {
+					_board.setBlueTurn();
+				}
+				else {
+					_board.setRedTurn();
+				}
 				switchTurns(true);
-				
+			}
+			else {
+				if (_board.isBlueLost()) {
+					_board.setGreenTurn();
+				}
+				else {
+					_board.setBlueTurn();
+				}
+				switchTurns(true);
 			}
 		}
-
-	}
+		}
 	}
 	
 	
@@ -264,22 +296,28 @@ public class GUI {
 		JLabel _turnTxtPanel = new JLabel();
 		
 		if(switchToSpyMaster == true) {
-			if(_board.isBlueTurn() == false) {
+			if(_board.isBlueTurn()) {
+				_turnTxtPanel.setText("It will now be Blue spymaster's turn");
+			}
+			else if(_board.isGreenTurn()) {
+				_turnTxtPanel.setText("It will now be Green spymaster's turn");
+			}
+			else if (_board.isRedTurn()) {
 				_turnTxtPanel.setText("It will now be Red spymaster's turn");
 			}
-			else {
-				_turnTxtPanel.setText("It will now be blue spymaster's turn");
-			}	
 		}
 		else {
-			if(_board.isBlueTurn()  == false)
-			{
-				_turnTxtPanel.setText("It will now be Red team's turn");
+			if(_board.isBlueTurn()) {
+				_turnTxtPanel.setText("It will now be Blue team's turn");
 			}
-			else {
-				_turnTxtPanel.setText("It will now be blue team's turn");
+			else if(_board.isGreenTurn()){
+				_turnTxtPanel.setText("It will now be Green team's turn");
+			}
+			else if (_board.isRedTurn()){
+				_turnTxtPanel.setText("It will now be Red team's turn");
 			}	
 		}
+		
 		//code to set text indicating correct team/spymaster turn
 		setLabelPropertiesOther(_turnTxtPanel);
 		_turnTxtPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -290,13 +328,12 @@ public class GUI {
 		_close.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
 				if(switchToSpyMaster == true) {
 					updateSpyMaster();
 				}
-				else {
-					updateTeam();	
-				}
+				else{
+					updateTeam();
+					}
 			}
 		});
 		
@@ -370,7 +407,7 @@ public class GUI {
 		_playAgain.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				_windowHolder.newGameTwo();
+				_windowHolder.newGameThree();
 				_gameOver.dispose();}});
 		_gameOverPanel.add(_playAgain);
 		
@@ -407,14 +444,34 @@ public class GUI {
 		_Pass.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(_board.isBlueTurn() == true) {
-					_board.setRedTurn(true);
-				} else {
-					_board.setBlueTurn(true);
+				if (_board.isBlueTurn()) {
+					if (_board.isGreenLost()) {
+						_board.setRedTurn();
+					}
+					else {
+						_board.setGreenTurn();
+					}
+					switchTurns(true);
+				} 
+				else if (_board.isGreenTurn()){
+					if (_board.isRedLost()) {
+						_board.setBlueTurn();
+					}
+					else {
+						_board.setRedTurn();
+					}
+					switchTurns(true);
 				}
-				switchTurns(true);
+				else {
+					if (_board.isBlueLost()) {
+						_board.setGreenTurn();
+					}
+					else {
+						_board.setBlueTurn();
+					}
+					switchTurns(true);
+				}
 			}
-
 		});
 		_infoPanel.add(_Pass);
 		setButtonProperties(_Pass);
@@ -452,7 +509,7 @@ public class GUI {
 				}
 
 				if (_model.checkClue(txtFieldClue.getText()) == false || txtFieldClue.getText() == ""
-						|| badcount == true || count <= 0 || count > 9) {
+						|| badcount == true || count <= 0 || count > 6) {
 
 					txtFieldClue.setText("Clue");
 
@@ -630,6 +687,8 @@ public class GUI {
 			} else if (type.toLowerCase().equals("innocent")) {
 				label.setBackground(Color.getHSBColor(202, 60, 59 ));
 			} else if (type.toLowerCase().equals("assassin")) {
+				label.setForeground(Color.BLACK);
+			} else if (type.toLowerCase().equals("green")) {
 				label.setBackground(Color.GREEN);
 			}
 		} else {
@@ -641,6 +700,8 @@ public class GUI {
 			} else if (type.toLowerCase().equals("innocent")) {
 				label.setForeground(Color.MAGENTA);
 			} else if (type.toLowerCase().equals("assassin")) {
+				label.setForeground(Color.BLACK);
+			} else if (type.toLowerCase().equals("green")) {
 				label.setForeground(Color.GREEN);
 			}
 		}

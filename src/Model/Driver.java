@@ -43,13 +43,20 @@ public class Driver implements Runnable {
 	}
 
 	/* when called creates a new Gui and Model thus starting a new game */
-	public void newGame() {
+	public void newGameTwo() {
 		_mainPanel.removeAll();
 		GUI newGui = new GUI(_mainPanel, this, new Model("GameWords.txt"));
 		newGui.switchTurns(true);
 		newGui.effects();
 		updateJFrame();
-
+	}
+	
+	public void newGameThree() {
+		_mainPanel.removeAll();
+		GUI2 newGui = new GUI2(_mainPanel, this, new Model2("GameWords.txt"));
+		newGui.switchTurns(true);
+		newGui.effects();
+		updateJFrame();
 	}
 
 	/* can be called to end the game and exit the window */
@@ -96,12 +103,20 @@ public class Driver implements Runnable {
 		
 	
 		JPanel _startPanel = new JPanel();
-		_startPanel.setLayout(new GridLayout(2, 1));
-		JButton _newGame = new JButton("Start");
-		_newGame.addActionListener(new ActionListener() {
+		_startPanel.setLayout(new GridLayout(3, 1));
+		JButton _newGameTwo = new JButton("New 2-Team Game");
+		_newGameTwo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				newGame();
+				newGameTwo();
+			}
+		});
+		
+		JButton _newGameThree = new JButton("New 3-Team Game");
+		_newGameThree.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				newGameThree();
 			}
 		});
 
@@ -113,7 +128,8 @@ public class Driver implements Runnable {
 			}
 		});
 
-		_startPanel.add(_newGame);
+		_startPanel.add(_newGameTwo);
+		_startPanel.add(_newGameThree);
 		_startPanel.add(_exit);
 		_mainPanel.add(_startPanel);
 

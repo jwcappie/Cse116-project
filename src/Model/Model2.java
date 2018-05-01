@@ -24,17 +24,17 @@ public class Model2 {
 	 */
 	private ArrayList<String> unShuffledCodenames = new ArrayList<>();
 
-	private Board currentBoard;
+	private Board2 currentBoard;
 
 	public Model2(String fileName) {
 
-		Board currentBoard = new Board();
+		Board2 currentBoard = new Board2();
 		ReadFile(fileName);
 		CreateNameList(fileName);
 		CreatePersonList();
 		currentBoard.setBoard(personList, names);
 		this.currentBoard = currentBoard;
-		this.currentBoard.whosTurn();
+		this.currentBoard.setRedTurn();
 	}
 
 	/**
@@ -168,7 +168,7 @@ public class Model2 {
 		return unShuffledCodenames;
 	}
 
-	public Board getCurrentBoard() {
+	public Board2 getCurrentBoard() {
 		return currentBoard;
 	}
 

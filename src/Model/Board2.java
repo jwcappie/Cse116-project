@@ -26,7 +26,11 @@ public class Board2 {
 	/** 
 	 * Boolean which returns true if it is green team's turn.
 	 */
-		private boolean greenTurn;
+	private boolean greenTurn;
+	
+	private boolean greenLost = false;
+	private boolean redLost = false;
+	private boolean blueLost = false;
 	
 /**
  * String equal to the winning team, either blue or red.	
@@ -74,19 +78,20 @@ public class Board2 {
 		for (Location guess : Locations) {
 			if (guessCode.equals(guess.getCodeName())) {
 				guess.setRevealed(true);
-				if (guess.getPerson().isBlue() == true && blueTurn == true) {
-					count = count - 1;
-
+				if (guess.getPerson().isBlue() == true && blueTurn) {
+					count--;
 					return true;
-				} else if (guess.getPerson().isRed() == true && blueTurn == false) {
-					count = count - 1;
-
+				} else if (guess.getPerson().isRed() && redTurn) {
+					count--;
 					return true;
 				}
-				else if (guess.getPerson().isGreen() == true && greenTurn == false) {
-					count = count - 1;
-
+				else if (guess.getPerson().isGreen() && greenTurn) {
+					count--;
 					return true;
+				}
+				else if (guess.getPerson().isAssassin()) {
+					removeTeam();
+					return false;
 				}
 				}
 			}
@@ -99,98 +104,78 @@ public class Board2 {
 	 * @return 
 	 */
 
-	public boolean winningState()
-	{
+	public boolean winningState() {
 		int redCount = 0;
 		int blueCount = 0;
 		int greenCount = 0;
+		int assassinCount = 0;
 		ArrayList<Location> LocationTemp = Locations;
 		
-		for(Location check: LocationTemp)
-		{
-			if(check.isRevealed()== true)
-			{
-			if (check.getPerson().isBlue() == true)
-			{
-				blueCount = blueCount + 1;
-			}
-			else if(check.getPerson().isRed() == true)
-			{
-				redCount = redCount+1;
-			}
-			else if(check.getPerson().isGreen() == true)
-			{
-				greenCount = greenCount+1;
-			}
-			else if(check.getPerson().isAssassin() == true)
-			{
-				assassinWin();
-				return true;
-			}
+		for(Location check: LocationTemp) {
+			if(check.isRevealed() == true) {
+				if (check.getPerson().isBlue()) {
+					blueCount++;
+				}
+				else if(check.getPerson().isRed()) {
+					redCount++;
+				}
+				else if(check.getPerson().isGreen()) {
+					greenCount++;
+				}
+				else if (check.getPerson().isAssassin()) {
+					assassinCount++;
+				}
 			}
 		}
 		
-		if(redCount == 9)
-		{
+		if (redCount == 6) {
 			winner = "Red";
 			return true;
 		}
-		else if (blueCount == 8)
-		{
+		else if (blueCount == 5) {
 			winner = "Blue";
 			return true;
 		}
-		else if (greenCount == 8)
-		{
+		else if (greenCount == 5) {
 			winner = "Green";
 			return true;
 		}
-		else
-		{
+		else if (assassinCount == 2) {
+			if (blueLost == false) {
+				winner = "Blue";
+				return true;
+			}
+			if (redLost == false) {
+				winner = "Red";
+				return true;
+			}
+			if (greenLost == false) {
+				winner = "Green";
+				return true;
+			}
+			return false;
+		}
+		else {
 			return false;
 		}
 		
 	}
 	
-	/**
-	 * Takes in an int (round number) as a parameter and sets who's turn it is during that round
-	   If redTurn is true than it is red's turn, if blueTurn is true than it is Blue's turn
-	 * @param r - the current round number
-	 *  **
-	 */
-	
-	//needs to be reimplemented
-//	public void whosTurn () {
-//			if (round % 2 == 0) {
-//				redTurn = true;
-//				blueTurn = false;
-//			}
-//			else {
-//				redTurn = false;
-//				blueTurn = true;
-//			}
-//		}
-
 	/** 
-	 * If the Assassin is revealed then it will return who the winner is
-	 * @param r - the round number
-	 * @return winner - String containing the name of the team that has won due to the other team revealing the assassin
+	 * Removes a team if they reveal an assassin.
+	 * @null
+	 * @return null
 	 */
-	public String assassinWin () {
-		for (Location assassinLocate : Locations) {
-			if (assassinLocate.getPerson().isAssassin() == true) {
-				if (blueTurn == true && assassinLocate.isRevealed() == true) {
-					winner = "Red";
-				}
-				if (redTurn == true && assassinLocate.isRevealed() == true) {
-					winner = "Blue"; 
-				}
-				if (greenTurn == true && assassinLocate.isRevealed() == true) {
-					winner = "Green"; 
-				}
-			}
+	public void removeTeam() {
+		if (blueTurn) {
+			blueLost = true;
 		}
-		return winner;
+		else if (redTurn) {
+			redLost = true;
+		}
+		else {
+			greenLost = true;
+		}
 	}
 	
 	/** Getters and Setters
@@ -261,7 +246,9 @@ public class Board2 {
 		return greenTurn;
 	}
 
-	
+	public boolean isRedTurn() {
+		return redTurn;
+	}
 
 	public String getWinner() {
 		return winner;
@@ -270,5 +257,29 @@ public class Board2 {
 	public void setWinner(String winner) {
 		this.winner = winner;
 	}
+	public boolean isGreenLost() {
+		return greenLost;
+	}
+
+	public void setGreenLost(boolean greenLost) {
+		this.greenLost = greenLost;
+	}
+
+	public boolean isRedLost() {
+		return redLost;
+	}
+
+	public void setRedLost(boolean redLost) {
+		this.redLost = redLost;
+	}
+
+	public boolean isBlueLost() {
+		return blueLost;
+	}
+
+	public void setBlueLost(boolean blueLost) {
+		this.blueLost = blueLost;
+	}
+
 
 }
