@@ -28,6 +28,10 @@ public class Board2 {
 	 */
 	private boolean greenTurn;
 	
+	
+	/**
+	 * Keeps track of which teams have revealed an assassin and lost.
+	 */
 	private boolean greenLost = false;
 	private boolean redLost = false;
 	private boolean blueLost = false;
