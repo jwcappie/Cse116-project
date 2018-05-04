@@ -52,4 +52,4 @@ jUnit test for this :
 
 Method which returns which is used at the end of a turn to determine the team whose move is next (this must include the possibility that the next team in the 3-team rotation had previously Revealed an Assassin) [7 points]
 Method which does this : countAndClueTeam && guessCheck (depending on if they click pass turn or choose a location) [Gui2 Class]
-jUnit test for this :
+jUnit test for this : 
