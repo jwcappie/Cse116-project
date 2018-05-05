@@ -40,16 +40,16 @@ Three-Person Game Tests
 
 Creates a List containing randomly generated assignments for each of the 6 Red Agents, 5 Blue Agents, 5 Green Agents, 7 Innocent Bystanders, and 2 Assassins [3 points]
 Method which does this : createPersonList [Model2 Class]
-jUnit test for this :
+jUnit test for this : threeTeamPersonListTest
 
 Method defined which correctly returns whether or not the Board is in one of the winning states [5 points]
 Method which does this : winningState [Board2 Class]
-jUnit test for this :
+jUnit test for this : threeTeamWinningStateTestNoWin, threeTeamWinningStateTestAssassin, threeTeamWinningStateTestBlue, threeTeamWinningStateTestRed
 
 Method defined which correctly returns which team wins once the 2nd Assassin is revealed [8 points]
 Method which does this : winningState [Board2 Class]
-jUnit test for this :
+jUnit test for this : threeTeamRedAssassinWin, threeTeamBlueAssassinWin, threeTeamGreenAssassinWin
 
 Method which returns which is used at the end of a turn to determine the team whose move is next (this must include the possibility that the next team in the 3-team rotation had previously Revealed an Assassin) [7 points]
-Method which does this : countAndClueTeam && guessCheck (depending on if they click pass turn or choose a location) [Gui2 Class]
-jUnit test for this : 
+Method which does this : countAndClueTeam && guessCheck && changeTurnTest (depending on if they click pass turn or choose a location) [Gui2 Class]
+jUnit test for this : threeTeamPassTurnTest

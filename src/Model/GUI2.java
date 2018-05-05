@@ -40,7 +40,16 @@ public class GUI2 {
 	private Board2 _board;
 	private JPanel _graphicPanel;
 	private boolean isFirstTurnOfTheGame = true;
-
+	
+	/**
+	 * Constructor just for testing purposes.
+	 * @param model
+	 */
+	public GUI2(Model2 model) {
+		_model = model;
+		_board = model.getCurrentBoard();
+	}
+	
 	public GUI2(JPanel _mainPanel, Driver driver, Model2 _model) {
 
 		this._mainPanel = _mainPanel;
@@ -731,5 +740,36 @@ public class GUI2 {
 		label.setForeground(Color.BLACK);
 		label.setOpaque(true);
 
+	}
+	
+	/**
+	 * uses the same method as guessCheck() and countAndClueTeam() to change the turns.
+	 * @return
+	 */
+	public void changeTurnTest() {
+		if (_board.isBlueTurn()) {
+			if (_board.isGreenLost()) {
+				_board.setRedTurn();
+			}
+			else {
+				_board.setGreenTurn();
+			}
+		} 
+		else if (_board.isGreenTurn()){
+			if (_board.isRedLost()) {
+				_board.setBlueTurn();
+			}
+			else {
+				_board.setRedTurn();
+			}
+		}
+		else {
+			if (_board.isBlueLost()) {
+				_board.setGreenTurn();
+			}
+			else {
+				_board.setBlueTurn();
+			}
+		}
 	}
 }

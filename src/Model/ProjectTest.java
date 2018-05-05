@@ -454,9 +454,265 @@ public class ProjectTest {
 		}
 
 		assertEquals("It was Red's turn, so Blue was meant to win", testBoard.assassinWin(), "Blue");
-		testBoard.setRound(1);
+		testBoard.setBlueTurn(true);
 		assertEquals("It was Blue's turn, so Red was meant to win", testBoard.assassinWin(), "Red");
 
+	}
+	
+	/**
+	 * Tests if the three-person game correctly creates the correct amount of agents with the right teams.
+	 * Also makes sure that they are randomized each time.
+	 */
+	
+	@Test
+	public void threeTeamPersonListTest() {
+		Model2 m = new Model2("GameWords.txt");
+		Model2 n = new Model2("GameWords.txt");
+		assertFalse(m.CreatePersonList() == null);
+		assertFalse(m.CreatePersonList() == n.CreatePersonList());
+		assertEquals(25, m.CreatePersonList().size());
+		assertEquals(25, n.CreatePersonList().size());
+		// test for the number of blues
+
+		Model2 x = new Model2("GameWords.txt");
+		ArrayList<Person> personList = x.CreatePersonList();
+		ArrayList<String> s = new ArrayList<>();
+		HashMap<Integer, String> blue = new HashMap<>();
+		HashMap<Integer, String> red = new HashMap<>();
+		HashMap<Integer, String> green = new HashMap<>();
+		HashMap<Integer, String> assasin = new HashMap<>();
+		HashMap<Integer, String> innocent = new HashMap<>();
+		for (Person p : personList) {
+			s.add(p.getPersonType());
+			for (int i = 0; i < s.size(); i++) {
+				if (s.get(i) == "red") {
+					red.put(i, s.get(i));
+				}
+				if (s.get(i) == "blue") {
+					blue.put(i, s.get(i));
+				}
+				if (s.get(i) == "green") {
+					green.put(i, s.get(i));
+				}
+				if (s.get(i) == "innocent") {
+					innocent.put(i, s.get(i));
+				}
+				if (s.get(i) == "assassin") {
+					assasin.put(i, s.get(i));
+				}
+			}
+		}
+		assertEquals("This should give you the number of red's: ", 6, red.size());
+		assertEquals("This should give you the number of blue's: ", 5, blue.size());
+		assertEquals("This should give you the number of green's: ", 5, green.size());
+		assertEquals("This should give you the number of bystander's : ", 7, innocent.size());
+		assertEquals("This should give you the number of assassin's :", 2, assasin.size());
+	}
+	
+	@Test
+	public void threeTeamWinningStateTestRed() {
+		Model2 y = new Model2("GameWords.txt");
+		Board2 x = y.getCurrentBoard();
+
+		ArrayList<Location> tempList = new ArrayList<>();
+
+		for (Location temp : x.getLocations()) {
+
+			if (temp.getPerson().isRed() == true) {
+				temp.setRevealed(true);
+			}
+
+			tempList.add(temp);
+		}
+
+		Collections.shuffle(tempList);
+
+		x.setLocations(tempList);
+
+		assertTrue(x.winningState());
+
+	}
+	
+	@Test
+	public void threeTeamWinningStateTestGreen() {
+		Model2 y = new Model2("GameWords.txt");
+		Board2 x = y.getCurrentBoard();
+
+		ArrayList<Location> tempList = new ArrayList<>();
+
+		for (Location temp : x.getLocations()) {
+
+			if (temp.getPerson().isGreen() == true) {
+				temp.setRevealed(true);
+			}
+
+			tempList.add(temp);
+		}
+
+		Collections.shuffle(tempList);
+
+		x.setLocations(tempList);
+
+		assertTrue(x.winningState());
+
+	}
+
+	// Sets all blue to revealed and tests if in winning state
+
+	@Test
+	public void threeTeamWinningStateTestBlue() {
+		Model2 y = new Model2("GameWords.txt");
+		Board2 x = y.getCurrentBoard();
+
+		ArrayList<Location> tempList = new ArrayList<>();
+
+		for (Location temp : x.getLocations()) {
+
+			if (temp.getPerson().isBlue() == true) {
+				temp.setRevealed(true);
+			}
+
+			tempList.add(temp);
+		}
+
+		Collections.shuffle(tempList);
+
+		x.setLocations(tempList);
+
+		assertTrue(x.winningState());
+
+	}
+
+	// Sets assassin to revealed and tests if in winning state
+
+	@Test
+	public void threeTeamWinningStateTestAssassin() {
+		Model2 y = new Model2("GameWords.txt");
+		Board2 x = y.getCurrentBoard();
+
+		ArrayList<Location> tempList = new ArrayList<>();
+
+		for (Location temp : x.getLocations()) {
+
+			if (temp.getPerson().isAssassin() == true) {
+				temp.setRevealed(true);
+			}
+
+			tempList.add(temp);
+		}
+
+		Collections.shuffle(tempList);
+		x.setLocations(tempList);
+
+		assertTrue(x.winningState());
+
+	}
+
+	// Sets all Bystanders to revealed and tests if not in winning state
+
+	@Test
+	public void threeTeamWinningStateTestNoWin() {
+		Model2 y = new Model2("GameWords.txt");
+		Board2 x = y.getCurrentBoard();
+
+		ArrayList<Location> tempList = new ArrayList<>();
+
+		for (Location temp : x.getLocations()) {
+
+			if (temp.getPerson().isBystander() == true) {
+				temp.setRevealed(true);
+			}
+
+			tempList.add(temp);
+		}
+
+		Collections.shuffle(tempList);
+
+		x.setLocations(tempList);
+
+		assertFalse(x.winningState());
+	}
+	
+	@Test
+	public void threeTeamBlueAssassinWin() {
+		Model2 x = new Model2("Gamewords.txt");
+		Board2 y = x.getCurrentBoard();
+		ArrayList<Location> tempList = new ArrayList<>();
+
+		for (Location temp : y.getLocations()) {
+			if (temp.getPerson().isAssassin() == true) {
+				temp.setRevealed(true);
+			}
+			tempList.add(temp);
+		}
+		Collections.shuffle(tempList);
+		y.setLocations(tempList);
+		y.setRedLost(true);
+		y.setGreenLost(true);
+		
+		assertTrue("Since both Red and Green lost, should return true.", y.winningState());
+		assertEquals("Since Blue should win, winner should be set to be Blue", "Blue", y.getWinner());
+	}
+	
+	@Test
+	public void threeTeamGreenAssassinWin() {
+		Model2 x = new Model2("Gamewords.txt");
+		Board2 y = x.getCurrentBoard();
+		ArrayList<Location> tempList = new ArrayList<>();
+
+		for (Location temp : y.getLocations()) {
+			if (temp.getPerson().isAssassin() == true) {
+				temp.setRevealed(true);
+			}
+			tempList.add(temp);
+		}
+		Collections.shuffle(tempList);
+		y.setLocations(tempList);
+		y.setRedLost(true);
+		y.setBlueLost(true);
+		
+		assertTrue("Since both Red and Blue lost, should return true.", y.winningState());
+		assertEquals("Since Green should win, winner should be set to be Green", "Green", y.getWinner());
+	}
+	
+	@Test
+	public void threeTeamRedAssassinWin() {
+		Model2 x = new Model2("Gamewords.txt");
+		Board2 y = x.getCurrentBoard();
+		ArrayList<Location> tempList = new ArrayList<>();
+
+		for (Location temp : y.getLocations()) {
+			if (temp.getPerson().isAssassin() == true) {
+				temp.setRevealed(true);
+			}
+			tempList.add(temp);
+		}
+		Collections.shuffle(tempList);
+		y.setLocations(tempList);
+		y.setBlueLost(true);
+		y.setGreenLost(true);
+		
+		assertTrue("Since both Blue and Green lost, should return true.", y.winningState());
+		assertEquals("Since Red should win, winner should be set to be Red", "Red", y.getWinner());
+	}
+	
+	@Test
+	public void threeTeamPassTurnTest() {
+		Model2 x = new Model2("Gamewords.txt");
+		Board2 y = x.getCurrentBoard();
+		GUI2 g = new GUI2(x);
+		
+		assertTrue("Should be Red team's turn.", y.isRedTurn());
+		assertFalse("Should not be Blue's turn.", y.isBlueTurn());
+		assertFalse("Should not be Green's turn.", y.isGreenTurn());
+		y.setBlueTurn();
+		assertTrue("Should be Blue's turn.", y.isBlueTurn());
+		g.changeTurnTest();
+		assertTrue("Because the guess was not correct, it should have changed it to Green's turn", y.isGreenTurn());
+		y.setRedTurn();
+		y.setBlueLost(true);
+		g.changeTurnTest();
+		assertTrue("Since Blue has lost, when Red guesses wrong it should automatically go to Green's turn.", y.isGreenTurn());
 	}
 
 }
