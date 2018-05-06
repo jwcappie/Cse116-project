@@ -147,8 +147,49 @@ public class GUI2 {
 	 */
 	private void menuPanel() {
 		_menuPanel = new JPanel();
-		JLabel count = new JLabel();
 		JLabel turn = new JLabel();
+		
+		JFrame popWindow = new JFrame("Game Type");
+		JPanel bottonPanel = new JPanel();
+		JButton twoPersonGame = new JButton("New 2-Team Game");
+		JButton threePersonGame = new JButton("New 3-Team Game");
+		twoPersonGame.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				// TODO Auto-generated method stub
+				_windowHolder.newGameTwo();
+				popWindow.dispose();
+			}
+			
+		});
+		threePersonGame.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				// TODO Auto-generated method stub
+				_windowHolder.newGameThree();
+				 popWindow.dispose();
+			}
+			
+		});
+		JLabel message = new JLabel("Please choose game type");
+		message.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+		JPanel messagePanel = new JPanel();
+		
+		messagePanel.add(message);
+		bottonPanel.add(twoPersonGame);
+		bottonPanel.add(threePersonGame);
+		
+		JPanel all =new JPanel(); 
+		all.add(messagePanel,BorderLayout.NORTH);
+		all.add(bottonPanel, BorderLayout.SOUTH);
+		all.setLayout(new GridLayout(2, 1));
+		popWindow.add(all);
+		
+		
 		JComboBox<String> dropdown = new JComboBox<>();
 		_menuPanel.setPreferredSize(new Dimension(50, 30));
 		_menuPanel.setLayout(new BoxLayout(_menuPanel, BoxLayout.X_AXIS));
@@ -160,7 +201,10 @@ public class GUI2 {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (dropdown.getSelectedIndex() == 1) {
-					_windowHolder.newGameThree();
+					popWindow.setVisible(true);
+					popWindow.pack();
+					popWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					
 				} else if (dropdown.getSelectedIndex() == 2) {
 					_windowHolder.endGame();
 				}
@@ -184,6 +228,8 @@ public class GUI2 {
 		_mainPanel.add(_menuPanel);
 		
 	}
+
+	
 
 	/**
 	 * method called to update info panel given whether it is the spymasters turn or
@@ -676,7 +722,7 @@ public class GUI2 {
 		_graphicPanel.add(icon2,BorderLayout.CENTER); 
 		_graphicPanel.setPreferredSize(null);
 		_mainPanel.add( _graphicPanel);
-		
+		updateJFrameIfNotHeadless();
 	}
 
 	/**
