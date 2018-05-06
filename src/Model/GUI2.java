@@ -390,11 +390,11 @@ public class GUI2 {
 	/**
 	 * If guessCheck() returns true for winningState, winningUpdate is called to
 	 * end the game by creating a popup displaying which team wins and gives
-	 * the user the option to start a new game or to close out the applicaton.
+	 * the user the option to start a new 3 teams game, a 2 teams game, or to close out the applicaton.
 	 * 
 	 * This method calls on the board class' getWinner() method to know which team wins,
-	 * winningState() sets winner to: blue if blueCount = 8, red if redCount = 9, or if
-	 * assassin revealed will call assassinWin() to set winner.
+	 * winningState() sets winner to: blue if blueCount = 5, red if redCount = 6, greenCount = 5 or if
+	 * two our of the three teams reveal the assassin, it is set to the team remaining.
 	 * @param guess (The location clicked on by the user)
 	 */
 
@@ -411,7 +411,16 @@ public class GUI2 {
 		_winnerTextPanel.setFont(new Font("", Font.BOLD, 30));
 		_gameOverPanel.add(_winnerTextPanel);
 		
-		JButton _playAgain = new JButton ("Play Again!");
+		JButton _playAgain2 = new JButton ("Play a 2-team game!");
+		_playAgain2.setAlignmentX(Component.CENTER_ALIGNMENT);
+		_playAgain2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				_windowHolder.newGameTwo();
+				_gameOver.dispose();}});
+		_gameOverPanel.add(_playAgain2);
+		
+		JButton _playAgain = new JButton ("Play another 3-team game!");
 		_playAgain.setAlignmentX(Component.CENTER_ALIGNMENT);
 		_playAgain.addActionListener(new ActionListener() {
 			@Override

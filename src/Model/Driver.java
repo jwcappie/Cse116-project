@@ -50,7 +50,7 @@ public class Driver implements Runnable {
 		newGui.effects();
 		updateJFrame();
 	}
-	
+	/* when called, creates a new GUI2 and Model2 to make a 3-team game */
 	public void newGameThree() {
 		_mainPanel.removeAll();
 		GUI2 newGui = new GUI2(_mainPanel, this, new Model2("GameWords.txt"));
