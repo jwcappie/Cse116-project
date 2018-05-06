@@ -413,12 +413,21 @@ public class GUI {
 		_winnerTextPanel.setFont(new Font("", Font.BOLD, 30));
 		_gameOverPanel.add(_winnerTextPanel);
 		
-		JButton _playAgain = new JButton ("Play Again!");
+		JButton _playAgain2 = new JButton ("Play another 2-team game!");
+		_playAgain2.setAlignmentX(Component.CENTER_ALIGNMENT);
+		_playAgain2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				_windowHolder.newGameTwo();
+				_gameOver.dispose();}});
+		_gameOverPanel.add(_playAgain2);
+		
+		JButton _playAgain = new JButton ("Play a 3-team game!");
 		_playAgain.setAlignmentX(Component.CENTER_ALIGNMENT);
 		_playAgain.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				_windowHolder.newGameTwo();
+				_windowHolder.newGameThree();
 				_gameOver.dispose();}});
 		_gameOverPanel.add(_playAgain);
 		
